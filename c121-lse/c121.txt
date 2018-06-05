@@ -1,0 +1,108 @@
+C121
+----
+
+A pipelined CPU with 12-bit word length.
+
+ISA Overview
+------------
+
+C121 has a variable length instruction coding (either 1 or 2 words) and up to three registers affected per instruction.
+There are 16 programmer-accessible registers, of which some registers have specific purposes:
+
+* Registers 0-7 are general purpose registers that are optimized for use to store unsigned values
+* Registers 8-13 are general purpose registers that are optimized for use to store signed values
+* Register 15 is the program counter
+* Register 14 is the subroutine linkage register
+
+By providing program counter and subroutine linkage as addressable registers, jump and call instructions become
+unnecessary.  When any instruction modifies register 15 explicitly (not simply by incrementing it) the original
+value is copied to register 14, thus allowing
+
+Instructions
+------------
+
+Format 1:
+
++-11+-10+-9-+-8-+-7-+-6-+-5-+-4-+-3-+-2-+-1-+-0-+
+| o | m | d | d | d | d | i | i | i | i | i | i |
++---+---+---+---+---+---+---+---+---+---+---+---+
+
+where:
+     o - opcode
+     m - operand mode switch:
+         0 - immediate operand only
+	 1 - operand + R15
+     d - destination register selector
+     i - immediate operand
+            ... when destination register in range 0-7: zero extended to full word
+	    ... when destination register in range 8-15: sign extended to full word
+
+Instructions using format 1:
+
+1xxxxxxxxxxx - MOV d, i        source register is copied to destination
+               MOV d, R15 + i  
+
+
+TODO - define more instructions
+
+
+Timing
+------
+
+Timing of instruction execution based on a 3-phase clock, with
+phases P0, P1, and P2, which are cycled through in each T-state
+(so T=0 has P0 active, T=1 P1, T=2 P2, T=3 P0, etc).
+
+T   Operation description
+--- ------------------------------------------------------------------
+0   IFETCH line goes high,
+    PC=0 sent to address bus,
+    read line goes high
+1   Instruction 0 latched into IR0,
+    IFETCH goes low,
+    PC incremented
+    read goes low
+2   Decoded instruction and operand A latched into PS1 output,
+    IR0 invalidated,
+3   IFETCH goes high,
+    PC=1 sent to address bus,
+    read line high
+    PS2 latches input data,
+    PS1 receives ack and clears latches ready for next instruction
+4   Instruction 1 latched into IR0
+    IFETCH low
+    PC inc
+    READ low
+    PS3 latches input data
+    PC incremented
+    PS2 receives ack and clears latches ready for next instruction
+5   PS1 latches decoded instruction, signals output ready
+    PS3 triggers writeback
+6   IFETCH line goes high
+    PS3 reset
+    etc.
+
+So, operations that happen in various phases:
+
+P0
+--
+IFETCH  (when IR0_READY=0)
+PS1 reset
+PS2 latch
+PS3 reset
+
+P1
+--
+IR0 latch
+PC increment
+PS3 latch
+PS2 reset
+
+P2
+--
+PS1 latch
+REG_WRITEBACK
+IR0 reset
+
+   
+

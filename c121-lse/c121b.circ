@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project source="2.14.4" version="1.0">
+This file is intended to be loaded by Logisim-evolution (https://github.com/reds-heig/logisim-evolution).
+<lib desc="#Wiring" name="0"/>
+  <lib desc="#Gates" name="1">
+    <tool name="AND Gate">
+      <a name="facing" val="north"/>
+      <a name="size" val="30"/>
+    </tool>
+    <tool name="OR Gate">
+      <a name="facing" val="south"/>
+      <a name="size" val="30"/>
+      <a name="inputs" val="3"/>
+    </tool>
+  </lib>
+  <lib desc="#Plexers" name="2">
+    <tool name="Multiplexer">
+      <a name="enable" val="false"/>
+    </tool>
+    <tool name="Demultiplexer">
+      <a name="enable" val="false"/>
+    </tool>
+  </lib>
+  <lib desc="#Arithmetic" name="3"/>
+  <lib desc="#Memory" name="4">
+    <tool name="ROM">
+      <a name="contents">addr/data: 8 8
+0
+</a>
+    </tool>
+  </lib>
+  <lib desc="#I/O" name="5"/>
+  <lib desc="#HDL-IP" name="6">
+    <tool name="VHDL Entity">
+      <a name="content">--------------------------------------------------------------------------------
+-- HEIG-VD, institute REDS, 1400 Yverdon-les-Bains
+-- Project :
+-- File    :
+-- Autor   :
+-- Date    :
+--
+--------------------------------------------------------------------------------
+-- Description :
+--
+--------------------------------------------------------------------------------
+
+library ieee;
+  use ieee.std_logic_1164.all;
+  --use ieee.numeric_std.all;
+
+entity VHDL_Component is
+  port(
+  ------------------------------------------------------------------------------
+  --Insert input ports below
+    horloge_i  : in  std_logic;                    -- input bit example
+    val_i      : in  std_logic_vector(3 downto 0); -- input vector example
+  ------------------------------------------------------------------------------
+  --Insert output ports below
+    max_o      : out std_logic;                    -- output bit example
+    cpt_o      : out std_logic_Vector(3 downto 0)  -- output vector example
+    );
+end VHDL_Component;
+
+--------------------------------------------------------------------------------
+--Complete your VHDL description below
+architecture type_architecture of VHDL_Component is
+
+
+begin
+
+
+end type_architecture;
+</a>
+    </tool>
+  </lib>
+  <lib desc="#TCL" name="7">
+    <tool name="TclGeneric">
+      <a name="content">library ieee;
+use ieee.std_logic_1164.all;
+
+entity TCL_Generic is
+  port(
+    --Insert input ports below
+    horloge_i  : in  std_logic;                    -- input bit example
+    val_i      : in  std_logic_vector(3 downto 0); -- input vector example
+
+	  --Insert output ports below
+    max_o      : out std_logic;                    -- output bit example
+    cpt_o      : out std_logic_Vector(3 downto 0)  -- output vector example
+  );
+end TCL_Generic;
+</a>
+    </tool>
+  </lib>
+  <lib desc="#Base" name="8">
+    <tool name="Text Tool">
+      <a name="text" val=""/>
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="halign" val="center"/>
+      <a name="valign" val="base"/>
+    </tool>
+  </lib>
+  <lib desc="#BFH-Praktika" name="9"/>
+  <main name="main"/>
+  <options>
+    <a name="gateUndefined" val="ignore"/>
+    <a name="simlimit" val="1000"/>
+    <a name="simrand" val="0"/>
+    <a name="tickmain" val="half_period"/>
+  </options>
+  <mappings>
+    <tool lib="8" map="Button2" name="Menu Tool"/>
+    <tool lib="8" map="Button3" name="Menu Tool"/>
+    <tool lib="8" map="Ctrl Button1" name="Menu Tool"/>
+  </mappings>
+  <toolbar>
+    <tool lib="8" name="Poke Tool"/>
+    <tool lib="8" name="Edit Tool"/>
+    <tool lib="8" name="Text Tool">
+      <a name="text" val=""/>
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="halign" val="center"/>
+      <a name="valign" val="base"/>
+    </tool>
+    <sep/>
+    <tool lib="0" name="Pin"/>
+    <tool lib="0" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </tool>
+    <tool lib="1" name="NOT Gate"/>
+    <tool lib="1" name="AND Gate"/>
+    <tool lib="1" name="OR Gate"/>
+  </toolbar>
+  <circuit name="main">
+    <a name="circuit" val="main"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif bold 16"/>
+    <a name="circuitnamedbox" val="true"/>
+    <a name="circuitvhdlpath" val=""/>
+  </circuit>
+  <circuit name="InsnQ">
+    <a name="circuit" val="InsnQ"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif bold 16"/>
+    <a name="circuitnamedbox" val="true"/>
+    <a name="circuitvhdlpath" val=""/>
+    <wire from="(710,200)" to="(710,400)"/>
+    <wire from="(340,570)" to="(660,570)"/>
+    <wire from="(440,170)" to="(490,170)"/>
+    <wire from="(180,40)" to="(180,50)"/>
+    <wire from="(220,60)" to="(220,70)"/>
+    <wire from="(340,580)" to="(390,580)"/>
+    <wire from="(310,40)" to="(310,50)"/>
+    <wire from="(490,90)" to="(610,90)"/>
+    <wire from="(710,90)" to="(710,180)"/>
+    <wire from="(440,40)" to="(440,60)"/>
+    <wire from="(670,400)" to="(710,400)"/>
+    <wire from="(710,400)" to="(750,400)"/>
+    <wire from="(670,90)" to="(710,90)"/>
+    <wire from="(710,90)" to="(750,90)"/>
+    <wire from="(210,100)" to="(210,180)"/>
+    <wire from="(130,180)" to="(130,330)"/>
+    <wire from="(390,180)" to="(390,580)"/>
+    <wire from="(180,630)" to="(670,630)"/>
+    <wire from="(200,50)" to="(200,70)"/>
+    <wire from="(210,50)" to="(210,70)"/>
+    <wire from="(490,90)" to="(490,170)"/>
+    <wire from="(180,160)" to="(410,160)"/>
+    <wire from="(660,360)" to="(660,570)"/>
+    <wire from="(130,330)" to="(170,330)"/>
+    <wire from="(100,570)" to="(200,570)"/>
+    <wire from="(180,600)" to="(180,630)"/>
+    <wire from="(210,50)" to="(310,50)"/>
+    <wire from="(690,200)" to="(710,200)"/>
+    <wire from="(220,60)" to="(440,60)"/>
+    <wire from="(680,180)" to="(710,180)"/>
+    <wire from="(660,360)" to="(750,360)"/>
+    <wire from="(670,400)" to="(670,630)"/>
+    <wire from="(180,50)" to="(180,160)"/>
+    <wire from="(180,50)" to="(200,50)"/>
+    <wire from="(180,600)" to="(200,600)"/>
+    <wire from="(130,180)" to="(210,180)"/>
+    <wire from="(390,180)" to="(400,180)"/>
+    <wire from="(510,190)" to="(650,190)"/>
+    <wire from="(130,330)" to="(130,580)"/>
+    <wire from="(130,580)" to="(200,580)"/>
+    <comp lib="1" loc="(650,190)" name="AND Gate">
+      <a name="facing" val="west"/>
+      <a name="size" val="30"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+      <a name="negate1" val="true"/>
+    </comp>
+    <comp lib="0" loc="(440,40)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="label" val="CLK_PH3"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="4" loc="(170,250)" name="Counter">
+      <a name="width" val="4"/>
+      <a name="max" val="0xf"/>
+      <a name="label" val="QUEUE_STATE"/>
+    </comp>
+    <comp lib="0" loc="(750,140)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="12"/>
+      <a name="label" val="IFETCH_ADDR"/>
+      <a name="labelloc" val="east"/>
+      <a name="radix" val="16"/>
+    </comp>
+    <comp lib="0" loc="(750,90)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="IFETCH"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="4" loc="(620,80)" name="D Flip-Flop"/>
+    <comp lib="0" loc="(100,630)" name="Pin">
+      <a name="label" val="D_WAIT"/>
+    </comp>
+    <comp lib="6" loc="(200,530)" name="VHDL Entity">
+      <a name="content">(*
+--
+-- FIFO entity
+--
+-- From https://electronics.stackexchange.com/a/50189/22169
+-- and assumed to be freely usable
+--
+-- modified to match characteristics of a 74HC40105
+-- i.e. use of 4-bit width and 16 stage depth
+*)
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity fifo is
+generic (RAMsize: integer := 16);
+port (  data_in: in std_logic_vector (3 downto 0);  
+    clk,nrst: in std_logic;
+    readReq: in std_logic;  
+        writeReq: in std_logic; 
+        data_out: out std_logic_vector(3 downto 0); 
+        empty: out std_logic;  
+        full: out std_logic;
+    error: out std_logic);
+end fifo;
+
+architecture Behavioral of fifo is
+type memory_type is array (0 to RAMsize-1) of std_logic_vector(3 downto 0);
+signal memory : memory_type :=(others =&gt; (others =&gt; '0')); 
+
+begin
+  process(clk,nrst)
+  variable read_ptr, write_ptr : std_logic_vector(3 downto 0) := "0000";  -- read and write pointers
+  variable isempty , isfull : std_logic :='0';
+  begin
+  if nrst='0' then
+    memory &lt;= (others =&gt; (others =&gt; '0'));
+    empty &lt;='1';
+    full &lt;='0';
+    data_out &lt;= "0000";
+    read_ptr := "0000";
+    write_ptr := "0000";
+    isempty :='1';
+    isfull :='0';
+    error &lt;='0';
+  elsif clk'event and clk='1' then
+    if readReq='0' and writeReq='0' then
+      error &lt;='0';
+    end if;
+    if readReq='1' then
+      if isempty='1' then
+        error &lt;= '1';
+      else
+        data_out &lt;= memory(conv_integer(read_ptr));
+        isfull :='0';
+        full &lt;='0';
+        error &lt;='0';
+        if read_ptr=conv_std_logic_vector(RAMsize-1,4) then
+          read_ptr := "0000";
+        else
+          read_ptr := read_ptr + '1';
+        end if;
+        if read_ptr=write_ptr then
+          isempty:='1';
+          empty &lt;='1';
+        end if;
+      end if;
+    end if;
+    if writeReq='1' then
+      if isfull='1' then
+        error &lt;='1';
+      else
+        memory(conv_integer(write_ptr)) &lt;= data_in;
+        error &lt;='0';
+        isempty :='0';
+        empty &lt;='0';
+        if write_ptr=conv_std_logic_vector(RAMsize-1,4) then
+          write_ptr := "0000";
+        else
+          write_ptr := write_ptr + '1';
+        end if;
+        if write_ptr=read_ptr then
+          isfull :='1';
+          full &lt;='1';
+        end if;
+      end if;
+    end if;
+  end if;
+  end process;
+
+end Behavioral;
+</a>
+    </comp>
+    <comp lib="0" loc="(100,570)" name="Pin">
+      <a name="width" val="4"/>
+      <a name="label" val="D_IN"/>
+    </comp>
+    <comp lib="0" loc="(750,400)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="label" val="INST_ACK"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="1" loc="(440,170)" name="AND Gate">
+      <a name="size" val="30"/>
+      <a name="negate1" val="true"/>
+    </comp>
+    <comp lib="0" loc="(750,360)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="width" val="4"/>
+      <a name="label" val="IR0"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(310,40)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="label" val="CLK_PH2"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="1" loc="(210,100)" name="OR Gate">
+      <a name="facing" val="south"/>
+      <a name="size" val="30"/>
+      <a name="inputs" val="3"/>
+    </comp>
+    <comp lib="0" loc="(180,40)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="label" val="CLK_PH1"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(650,40)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="width" val="12"/>
+      <a name="label" val="IP"/>
+      <a name="labelloc" val="east"/>
+      <a name="radix" val="16"/>
+    </comp>
+  </circuit>
+</project>

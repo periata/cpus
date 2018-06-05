@@ -1,0 +1,62 @@
+C61: A 6-bit pipelined architecture that fits on a single page
+==============================================================
+
+* Harvard architecture, 16 bit * 64 instruction memory, 6 bit * 1Kw data memory
+* Top 512 words data memory space used for IO
+* 16 registers, divided between set 0 and set 1
+* Fixed instruction format: OP ra, rb + imm
+* OP [bits 13-15] is one of 7 opcodes that use the 'imm' operand as value, or an
+  extension opcode that cause it to be translated to an additional instruction
+* ra [9-12] is any register from set 0 (if bit 12 == 0) or 1 (b12 == 1)
+* rb [6-8] is a register from set 0 in base opcodes or set 1 in extended opcodes
+* ra is modified in every instruction except IFEQ
+* Pipelined architecture, but no logic to prevent pipeline hazards - programmer
+  must track which registers haven't been written back yet. All instructions take
+  2 cycles (i.e. result of instruction started in cycle 0 is available in cycle 2).
+* data memory references are always relative to base register, (R8 << 4)
+* R7 is the instruction pointer; on explicit modifications it is copied
+  into R15 before the modfication takes place.
+
+Opcodes
+=======
+
+000 - ra <- rb + imm                              1  MOV
+001 - ra <- ra + rb + imm                         2  ADD
+010 - tmp <- ra - (rb + imm); SKIP NEXT IF NOT 0  2  IFEQ
+011 - ra <- ra ^ (rb + imm)                       2  XOR
+100 - ra <- [r8 << 4 + rb + imm]                  3  LOAD
+101 - [r8 << 4 + ra] <- rb + imm, ra <- ra + 1    3  STORE +ra, rb+imm  [R0-7]
+    - [r8 << 4 + ra] <- rb + imm, ra <- ra + 1    3  STORE ra, rb+imm   [R8-15]
+110 - ra <- ra - (rb + imm)                       2  SUB
+111 - EXTENSION OPERATIONS:                       2 
+      00nnnn - ra <- n (sign extended)               LDC
+      01ifff - ra <- ra + 1 [if R0-7]; skip next op if...
+        0    - last operation produced any of:
+         001 -   carry                               IFNC [+]ra
+         010 -   zero                                IFNZ [+]ra
+	 100 -   negative (high bit = 1)             IFNM [+]ra
+	                                             (suffixes in above order)
+        1    - last operation produced none of...    IFxxx [+]ra
+	       e.g. IFZM = skip if not zero and not negative
+	            IFNZM = skip if zero or negative
+	(note ra must be specified even if no change is to be made, as
+	 it will be read and then written back, so the actual register used is
+	 relevant)
+      1iccss -
+          00 - source = ra                           xxx ra, ra
+	  01 - source = ra + 1                       xxx ra, +ra         [R0-7]
+	  10 - source = rb                           xxx ra, rb          [R8-15]
+	  11 - source = ra << 1                      xxx ra, <ra
+	00   - r = source                            xCP
+	01   - r = ra & source                       xAN
+	10   - r = ra | source                       xOR
+	11   - r = ra - source                       xSB
+       0     - ra <- r                               Mxx
+       1     - ra <- ~r                              Nxx
+
+
+
+
+      
+      
+      
