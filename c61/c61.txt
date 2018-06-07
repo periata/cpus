@@ -54,6 +54,13 @@ Opcodes
        0     - ra <- r                               Mxx
        1     - ra <- ~r                              Nxx
 
+Known issues
+============
+
+IFEQ r7, ...  doesn't work as expected, effectively always comparing as false.  Fixing
+this would require several extra gates and I don't believe there is any practical
+purpose to this instruction, so have left the flaw in place.
+
 
 
 
