@@ -30,7 +30,7 @@ Opcodes
 110 - ra <- ra - (rb + imm)                       2  SUB
 111 - EXTENSION OPERATIONS:                       2 
       00nnnn - ra <- n (sign extended)               LDC
-      01ifff - ra <- ra + 1 [if R0-7]; skip next op if...
+      01ifff - skip next op if...
         0    - last operation produced any of:
          001 -   carry                               IFNC [+]ra
          010 -   zero                                IFNZ [+]ra
@@ -39,14 +39,11 @@ Opcodes
         1    - last operation produced none of...    IFxxx [+]ra
 	       e.g. IFZM = skip if not zero and not negative
 	            IFNZM = skip if zero or negative
-	(note ra must be specified even if no change is to be made, as
-	 it will be read and then written back, so the actual register used is
-	 relevant)
       1iccss -
           00 - source = ra                           xxx ra, ra
 	  01 - source = ra + 1                       xxx ra, +ra         [R0-7]
 	  10 - source = rb                           xxx ra, rb          [R8-15]
-	  11 - source = ra << 1                      xxx ra, <ra
+	  11 - source = ra >> 1                      xxx ra, >ra
 	00   - r = source                            xCP
 	01   - r = ra & source                       xAN
 	10   - r = ra | source                       xOR
