@@ -1,0 +1,119 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2015 Altera Corporation. All rights reserved.
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, the Altera Quartus Prime License Agreement,
+# the Altera MegaCore Function License Agreement, or other 
+# applicable license agreement, including, without limitation, 
+# that your use is for the sole purpose of programming logic 
+# devices manufactured by Altera and sold by Altera or its 
+# authorized distributors.  Please refer to the applicable 
+# agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 15.1.0 Build 185 10/21/2015 SJ Lite Edition
+# Date created = 19:26:03  June 19, 2018
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		regfile8x6_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "MAX II"
+set_global_assignment -name DEVICE EPM240T100C5
+set_global_assignment -name TOP_LEVEL_ENTITY c61registerset
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 15.1.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "19:26:02  JUNE 19, 2018"
+set_global_assignment -name LAST_QUARTUS_VERSION 15.1.0
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR "-1"
+set_global_assignment -name POWER_EXT_SUPPLY_VOLTAGE_TO_REGULATOR 3.3V
+set_global_assignment -name VERILOG_FILE regfile.v
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH STILL AIR"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_global_assignment -name BDF_FILE c61registerset.bdf
+set_global_assignment -name VERILOG_FILE plus1.v
+set_location_assignment PIN_77 -to ra0[5]
+set_location_assignment PIN_76 -to ra0[4]
+set_location_assignment PIN_75 -to ra0[3]
+set_location_assignment PIN_74 -to ra0[2]
+set_location_assignment PIN_73 -to ra0[1]
+set_location_assignment PIN_72 -to ra0[0]
+set_location_assignment PIN_87 -to ra0_inc[5]
+set_location_assignment PIN_86 -to ra0_inc[4]
+set_location_assignment PIN_85 -to ra0_inc[3]
+set_location_assignment PIN_84 -to ra0_inc[2]
+set_location_assignment PIN_83 -to ra0_inc[1]
+set_location_assignment PIN_82 -to ra0_inc[0]
+set_location_assignment PIN_1 -to ra0_sel[0]
+set_location_assignment PIN_2 -to ra0_sel[1]
+set_location_assignment PIN_3 -to ra0_sel[2]
+set_location_assignment PIN_57 -to ra1[5]
+set_location_assignment PIN_56 -to ra1[4]
+set_location_assignment PIN_55 -to ra1[3]
+set_location_assignment PIN_54 -to ra1[2]
+set_location_assignment PIN_53 -to ra1[1]
+set_location_assignment PIN_52 -to ra1[0]
+set_location_assignment PIN_17 -to ra1_sel[2]
+set_location_assignment PIN_16 -to ra1_sel[1]
+set_location_assignment PIN_15 -to ra1_sel[0]
+set_location_assignment PIN_71 -to rb0[5]
+set_location_assignment PIN_70 -to rb0[4]
+set_location_assignment PIN_69 -to rb0[3]
+set_location_assignment PIN_68 -to rb0[2]
+set_location_assignment PIN_67 -to rb0[1]
+set_location_assignment PIN_66 -to rb0[0]
+set_location_assignment PIN_6 -to rb0_sel[2]
+set_location_assignment PIN_5 -to rb0_sel[1]
+set_location_assignment PIN_4 -to rb0_sel[0]
+set_location_assignment PIN_51 -to rb1[5]
+set_location_assignment PIN_50 -to rb1[4]
+set_location_assignment PIN_49 -to rb1[3]
+set_location_assignment PIN_48 -to rb1[2]
+set_location_assignment PIN_41 -to rb1[1]
+set_location_assignment PIN_40 -to rb1[0]
+set_location_assignment PIN_21 -to rb1_sel[2]
+set_location_assignment PIN_20 -to rb1_sel[1]
+set_location_assignment PIN_19 -to rb1_sel[0]
+set_location_assignment PIN_98 -to rw0_sel[2]
+set_location_assignment PIN_99 -to rw0_sel[1]
+set_location_assignment PIN_100 -to rw0_sel[0]
+set_location_assignment PIN_28 -to rw1_sel[2]
+set_location_assignment PIN_27 -to rw1_sel[1]
+set_location_assignment PIN_26 -to rw1_sel[0]
+set_location_assignment PIN_97 -to wd0[5]
+set_location_assignment PIN_96 -to wd0[4]
+set_location_assignment PIN_91 -to wd0[3]
+set_location_assignment PIN_90 -to wd0[2]
+set_location_assignment PIN_89 -to wd0[1]
+set_location_assignment PIN_88 -to wd0[0]
+set_location_assignment PIN_39 -to wd1[5]
+set_location_assignment PIN_38 -to wd1[4]
+set_location_assignment PIN_37 -to wd1[3]
+set_location_assignment PIN_36 -to wd1[2]
+set_location_assignment PIN_35 -to wd1[1]
+set_location_assignment PIN_34 -to wd1[0]
+set_location_assignment PIN_7 -to we0
+set_location_assignment PIN_29 -to we1
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
