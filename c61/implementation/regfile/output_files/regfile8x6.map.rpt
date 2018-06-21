@@ -1,5 +1,5 @@
 Analysis & Synthesis report for regfile8x6
-Tue Jun 19 21:03:10 2018
+Wed Jun 20 19:50:40 2018
 Quartus Prime Version 15.1.0 Build 185 10/21/2015 SJ Lite Edition
 
 
@@ -14,8 +14,11 @@ Quartus Prime Version 15.1.0 Build 185 10/21/2015 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Multiplexer Restructuring Statistics (Restructuring Performed)
- 10. Analysis & Synthesis Messages
+  9. Multiplexer Restructuring Statistics (No Restructuring Performed)
+ 10. Parameter Settings for User Entity Instance: select_or_force:inst3
+ 11. Parameter Settings for User Entity Instance: BUSMUX:inst5
+ 12. Parameter Settings for User Entity Instance: select_or_force:inst4
+ 13. Analysis & Synthesis Messages
 
 
 
@@ -42,13 +45,13 @@ agreement for further details.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Tue Jun 19 21:03:10 2018       ;
+; Analysis & Synthesis Status ; Successful - Wed Jun 20 19:50:40 2018       ;
 ; Quartus Prime Version       ; 15.1.0 Build 185 10/21/2015 SJ Lite Edition ;
 ; Revision Name               ; regfile8x6                                  ;
 ; Top-level Entity Name       ; c61registerset                              ;
 ; Family                      ; MAX II                                      ;
-; Total logic elements        ; 238                                         ;
-; Total pins                  ; 63                                          ;
+; Total logic elements        ; 248                                         ;
+; Total pins                  ; 66                                          ;
 ; Total virtual pins          ; 0                                           ;
 ; UFM blocks                  ; 0 / 1 ( 0 % )                               ;
 +-----------------------------+---------------------------------------------+
@@ -62,10 +65,10 @@ agreement for further details.
 ; Device                                                                     ; EPM240T100C5       ;                    ;
 ; Top-level entity name                                                      ; c61registerset     ; regfile8x6         ;
 ; Family name                                                                ; MAX II             ; Cyclone V          ;
+; Restructure Multiplexers                                                   ; Off                ; Auto               ;
 ; Use smart compilation                                                      ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
 ; Enable compact report table                                                ; Off                ; Off                ;
-; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
 ; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
 ; Preserve fewer node names                                                  ; On                 ; On                 ;
 ; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
@@ -137,15 +140,24 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                              ;
-+----------------------------------+-----------------+------------------------------------+-------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                    ; Library ;
-+----------------------------------+-----------------+------------------------------------+-------------------------------------------------+---------+
-; regfile.v                        ; yes             ; User Verilog HDL File              ; C:/HDD/designs/cpucomponents/regfile.v          ;         ;
-; c61registerset.bdf               ; yes             ; User Block Diagram/Schematic File  ; C:/HDD/designs/cpucomponents/c61registerset.bdf ;         ;
-; plus1.v                          ; yes             ; User Verilog HDL File              ; C:/HDD/designs/cpucomponents/plus1.v            ;         ;
-+----------------------------------+-----------------+------------------------------------+-------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                     ;
++----------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                           ; Library ;
++----------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------+---------+
+; regfile.v                        ; yes             ; User Verilog HDL File              ; C:/HDD/designs/cpucomponents/regfile8x6/regfile.v                      ;         ;
+; c61registerset.bdf               ; yes             ; User Block Diagram/Schematic File  ; C:/HDD/designs/cpucomponents/regfile8x6/c61registerset.bdf             ;         ;
+; plus1.v                          ; yes             ; User Verilog HDL File              ; C:/HDD/designs/cpucomponents/regfile8x6/plus1.v                        ;         ;
+; select_or_force.v                ; yes             ; User Verilog HDL File              ; C:/HDD/designs/cpucomponents/regfile8x6/select_or_force.v              ;         ;
+; busmux.tdf                       ; yes             ; Megafunction                       ; c:/hdd/altera_lite/15.1/quartus/libraries/megafunctions/busmux.tdf     ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                       ; c:/hdd/altera_lite/15.1/quartus/libraries/megafunctions/lpm_mux.inc    ;         ;
+; lpm_mux.tdf                      ; yes             ; Megafunction                       ; c:/hdd/altera_lite/15.1/quartus/libraries/megafunctions/lpm_mux.tdf    ;         ;
+; aglobal151.inc                   ; yes             ; Megafunction                       ; c:/hdd/altera_lite/15.1/quartus/libraries/megafunctions/aglobal151.inc ;         ;
+; muxlut.inc                       ; yes             ; Megafunction                       ; c:/hdd/altera_lite/15.1/quartus/libraries/megafunctions/muxlut.inc     ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                       ; c:/hdd/altera_lite/15.1/quartus/libraries/megafunctions/bypassff.inc   ;         ;
+; altshift.inc                     ; yes             ; Megafunction                       ; c:/hdd/altera_lite/15.1/quartus/libraries/megafunctions/altshift.inc   ;         ;
+; db/mux_j9c.tdf                   ; yes             ; Auto-Generated Megafunction        ; C:/HDD/designs/cpucomponents/regfile8x6/db/mux_j9c.tdf                 ;         ;
++----------------------------------+-----------------+------------------------------------+------------------------------------------------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -153,20 +165,20 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Total logic elements                        ; 238   ;
-;     -- Combinational with no register       ; 142   ;
+; Total logic elements                        ; 248   ;
+;     -- Combinational with no register       ; 152   ;
 ;     -- Register only                        ; 96    ;
 ;     -- Combinational with a register        ; 0     ;
 ;                                             ;       ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 115   ;
-;     -- 3 input functions                    ; 27    ;
-;     -- 2 input functions                    ; 0     ;
+;     -- 4 input functions                    ; 128   ;
+;     -- 3 input functions                    ; 19    ;
+;     -- 2 input functions                    ; 5     ;
 ;     -- 1 input functions                    ; 0     ;
 ;     -- 0 input functions                    ; 0     ;
 ;                                             ;       ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 238   ;
+;     -- normal mode                          ; 248   ;
 ;     -- arithmetic mode                      ; 0     ;
 ;     -- qfbk mode                            ; 0     ;
 ;     -- register cascade mode                ; 0     ;
@@ -174,24 +186,29 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;     -- asynchronous clear/load mode         ; 0     ;
 ;                                             ;       ;
 ; Total registers                             ; 96    ;
-; I/O pins                                    ; 63    ;
+; I/O pins                                    ; 66    ;
 ; Maximum fan-out node                        ; clk   ;
 ; Maximum fan-out                             ; 96    ;
-; Total fan-out                               ; 859   ;
-; Average fan-out                             ; 2.85  ;
+; Total fan-out                               ; 897   ;
+; Average fan-out                             ; 2.86  ;
 +---------------------------------------------+-------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                             ;
-+----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+--------------------------------+--------------+
-; Compilation Hierarchy Node ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name            ; Library Name ;
-+----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+--------------------------------+--------------+
-; |c61registerset            ; 238 (0)     ; 96           ; 0          ; 63   ; 0            ; 142 (0)      ; 96 (0)            ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |c61registerset                ; work         ;
-;    |plus1:inst|            ; 6 (6)       ; 0            ; 0          ; 0    ; 0            ; 6 (6)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |c61registerset|plus1:inst     ; work         ;
-;    |regfile:regs_0|        ; 116 (116)   ; 48           ; 0          ; 0    ; 0            ; 68 (68)      ; 48 (48)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |c61registerset|regfile:regs_0 ; work         ;
-;    |regfile:regs_1|        ; 116 (116)   ; 48           ; 0          ; 0    ; 0            ; 68 (68)      ; 48 (48)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |c61registerset|regfile:regs_1 ; work         ;
-+----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+--------------------------------+--------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                        ;
++-----------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+--------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node        ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name                                                ; Library Name ;
++-----------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+--------------------------------------------------------------------+--------------+
+; |c61registerset                   ; 248 (0)     ; 96           ; 0          ; 66   ; 0            ; 152 (0)      ; 96 (0)            ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |c61registerset                                                    ; work         ;
+;    |busmux:inst5|                 ; 6 (0)       ; 0            ; 0          ; 0    ; 0            ; 6 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |c61registerset|busmux:inst5                                       ; work         ;
+;       |lpm_mux:$00000|            ; 6 (0)       ; 0            ; 0          ; 0    ; 0            ; 6 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |c61registerset|busmux:inst5|lpm_mux:$00000                        ; work         ;
+;          |mux_j9c:auto_generated| ; 6 (6)       ; 0            ; 0          ; 0    ; 0            ; 6 (6)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |c61registerset|busmux:inst5|lpm_mux:$00000|mux_j9c:auto_generated ; work         ;
+;    |plus1:inst|                   ; 6 (6)       ; 0            ; 0          ; 0    ; 0            ; 6 (6)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |c61registerset|plus1:inst                                         ; work         ;
+;    |regfile:regs_0|               ; 116 (116)   ; 48           ; 0          ; 0    ; 0            ; 68 (68)      ; 48 (48)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |c61registerset|regfile:regs_0                                     ; work         ;
+;    |regfile:regs_1|               ; 116 (116)   ; 48           ; 0          ; 0    ; 0            ; 68 (68)      ; 48 (48)           ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |c61registerset|regfile:regs_1                                     ; work         ;
+;    |select_or_force:inst3|        ; 2 (2)       ; 0            ; 0          ; 0    ; 0            ; 2 (2)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |c61registerset|select_or_force:inst3                              ; work         ;
+;    |select_or_force:inst4|        ; 2 (2)       ; 0            ; 0          ; 0    ; 0            ; 2 (2)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |c61registerset|select_or_force:inst4                              ; work         ;
++-----------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+--------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -211,15 +228,47 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                     ;
+; Multiplexer Restructuring Statistics (No Restructuring Performed)                                                                                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output           ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------+
-; 8:1                ; 6 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |c61registerset|regfile:regs_0|ra[5] ;
+; 8:1                ; 6 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |c61registerset|regfile:regs_0|ra[4] ;
 ; 8:1                ; 6 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |c61registerset|regfile:regs_1|ra[5] ;
-; 8:1                ; 6 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |c61registerset|regfile:regs_0|rb[5] ;
-; 8:1                ; 6 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |c61registerset|regfile:regs_1|rb[5] ;
+; 8:1                ; 6 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |c61registerset|regfile:regs_0|rb[0] ;
+; 8:1                ; 6 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |c61registerset|regfile:regs_1|rb[2] ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------+
+
+
++--------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: select_or_force:inst3 ;
++----------------+-------+-------------------------------------------+
+; Parameter Name ; Value ; Type                                      ;
++----------------+-------+-------------------------------------------+
+; force_to_val   ; 111   ; Unsigned Binary                           ;
+; force_when_s   ; 0     ; Unsigned Binary                           ;
++----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: BUSMUX:inst5 ;
++----------------+-------+----------------------------------+
+; Parameter Name ; Value ; Type                             ;
++----------------+-------+----------------------------------+
+; WIDTH          ; 6     ; Untyped                          ;
++----------------+-------+----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: select_or_force:inst4 ;
++----------------+-------+-------------------------------------------+
+; Parameter Name ; Value ; Type                                      ;
++----------------+-------+-------------------------------------------+
+; force_to_val   ; 000   ; Unsigned Binary                           ;
+; force_when_s   ; 0     ; Unsigned Binary                           ;
++----------------+-------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +-------------------------------+
@@ -228,26 +277,40 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 15.1.0 Build 185 10/21/2015 SJ Lite Edition
-    Info: Processing started: Tue Jun 19 21:02:36 2018
+    Info: Processing started: Wed Jun 20 19:50:00 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off regfile8x6 -c regfile8x6
+Info (16303): Aggressive Performance optimization mode selected -- timing performance will be prioritized at the potential cost of increased logic area and compilation time
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file regfile.v
-    Info (12023): Found entity 1: regfile File: C:/HDD/designs/cpucomponents/regfile.v Line: 1
+    Info (12023): Found entity 1: regfile File: C:/HDD/designs/cpucomponents/regfile8x6/regfile.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file c61registerset.bdf
     Info (12023): Found entity 1: c61registerset
 Info (12021): Found 1 design units, including 1 entities, in source file plus1.v
-    Info (12023): Found entity 1: plus1 File: C:/HDD/designs/cpucomponents/plus1.v Line: 1
+    Info (12023): Found entity 1: plus1 File: C:/HDD/designs/cpucomponents/regfile8x6/plus1.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file select_or_force.v
+    Info (12023): Found entity 1: select_or_force File: C:/HDD/designs/cpucomponents/regfile8x6/select_or_force.v Line: 1
 Info (12127): Elaborating entity "c61registerset" for the top level hierarchy
 Info (12128): Elaborating entity "regfile" for hierarchy "regfile:regs_0"
+Info (12128): Elaborating entity "select_or_force" for hierarchy "select_or_force:inst3"
+Info (12128): Elaborating entity "BUSMUX" for hierarchy "BUSMUX:inst5"
+Info (12130): Elaborated megafunction instantiation "BUSMUX:inst5"
+Info (12133): Instantiated megafunction "BUSMUX:inst5" with the following parameter:
+    Info (12134): Parameter "WIDTH" = "6"
+Info (12128): Elaborating entity "lpm_mux" for hierarchy "BUSMUX:inst5|lpm_mux:$00000" File: c:/hdd/altera_lite/15.1/quartus/libraries/megafunctions/busmux.tdf Line: 44
+Info (12131): Elaborated megafunction instantiation "BUSMUX:inst5|lpm_mux:$00000", which is child of megafunction instantiation "BUSMUX:inst5" File: c:/hdd/altera_lite/15.1/quartus/libraries/megafunctions/busmux.tdf Line: 44
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_j9c.tdf
+    Info (12023): Found entity 1: mux_j9c File: C:/HDD/designs/cpucomponents/regfile8x6/db/mux_j9c.tdf Line: 23
+Info (12128): Elaborating entity "mux_j9c" for hierarchy "BUSMUX:inst5|lpm_mux:$00000|mux_j9c:auto_generated" File: c:/hdd/altera_lite/15.1/quartus/libraries/megafunctions/lpm_mux.tdf Line: 87
 Info (12128): Elaborating entity "plus1" for hierarchy "plus1:inst"
-Info (21057): Implemented 301 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 33 input pins
+Info (12128): Elaborating entity "select_or_force" for hierarchy "select_or_force:inst4"
+Info (21057): Implemented 314 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 36 input pins
     Info (21059): Implemented 30 output pins
-    Info (21061): Implemented 238 logic cells
+    Info (21061): Implemented 248 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 754 megabytes
-    Info: Processing ended: Tue Jun 19 21:03:10 2018
-    Info: Elapsed time: 00:00:34
-    Info: Total CPU time (on all processors): 00:01:05
+    Info: Peak virtual memory: 760 megabytes
+    Info: Processing ended: Wed Jun 20 19:50:41 2018
+    Info: Elapsed time: 00:00:41
+    Info: Total CPU time (on all processors): 00:01:08
 
 

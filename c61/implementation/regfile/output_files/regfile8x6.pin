@@ -70,7 +70,7 @@ rb0_sel[0]                   : 4         : input  : 3.3-V LVTTL       :         
 rb0_sel[1]                   : 5         : input  : 3.3-V LVTTL       :         : 1         : Y              
 rb0_sel[2]                   : 6         : input  : 3.3-V LVTTL       :         : 1         : Y              
 we0                          : 7         : input  : 3.3-V LVTTL       :         : 1         : Y              
-GND*                         : 8         :        :                   :         : 1         :                
+/ra0_sel7                    : 8         : input  : 3.3-V LVTTL       :         : 1         : Y              
 VCCIO1                       : 9         : power  :                   : 3.3V    : 1         :                
 GNDIO                        : 10        : gnd    :                   :         :           :                
 GNDINT                       : 11        : gnd    :                   :         :           :                
@@ -80,7 +80,7 @@ clk                          : 14        : input  : 3.3-V LVTTL       :         
 ra1_sel[0]                   : 15        : input  : 3.3-V LVTTL       :         : 1         : Y              
 ra1_sel[1]                   : 16        : input  : 3.3-V LVTTL       :         : 1         : Y              
 ra1_sel[2]                   : 17        : input  : 3.3-V LVTTL       :         : 1         : Y              
-GND*                         : 18        :        :                   :         : 1         :                
+/rb1_sel0                    : 18        : input  : 3.3-V LVTTL       :         : 1         : Y              
 rb1_sel[0]                   : 19        : input  : 3.3-V LVTTL       :         : 1         : Y              
 rb1_sel[1]                   : 20        : input  : 3.3-V LVTTL       :         : 1         : Y              
 rb1_sel[2]                   : 21        : input  : 3.3-V LVTTL       :         : 1         : Y              
@@ -157,7 +157,7 @@ wd0[3]                       : 91        : input  : 3.3-V LVTTL       :         
 GND*                         : 92        :        :                   :         : 2         :                
 GNDIO                        : 93        : gnd    :                   :         :           :                
 VCCIO2                       : 94        : power  :                   : 3.3V    : 2         :                
-GND*                         : 95        :        :                   :         : 2         :                
+/wd0_ra0i                    : 95        : input  : 3.3-V LVTTL       :         : 2         : Y              
 wd0[4]                       : 96        : input  : 3.3-V LVTTL       :         : 2         : Y              
 wd0[5]                       : 97        : input  : 3.3-V LVTTL       :         : 2         : Y              
 rw0_sel[2]                   : 98        : input  : 3.3-V LVTTL       :         : 2         : Y              

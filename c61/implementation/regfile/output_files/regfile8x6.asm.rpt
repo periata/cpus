@@ -1,5 +1,5 @@
 Assembler report for regfile8x6
-Tue Jun 19 21:56:16 2018
+Wed Jun 20 19:57:27 2018
 Quartus Prime Version 15.1.0 Build 185 10/21/2015 SJ Lite Edition
 
 
@@ -10,7 +10,7 @@ Quartus Prime Version 15.1.0 Build 185 10/21/2015 SJ Lite Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/HDD/designs/cpucomponents/output_files/regfile8x6.pof
+  5. Assembler Device Options: C:/HDD/designs/cpucomponents/regfile8x6/output_files/regfile8x6.pof
   6. Assembler Messages
 
 
@@ -38,7 +38,7 @@ agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Tue Jun 19 21:56:16 2018 ;
+; Assembler Status      ; Successful - Wed Jun 20 19:57:27 2018 ;
 ; Revision Name         ; regfile8x6                            ;
 ; Top-level Entity Name ; c61registerset                        ;
 ; Family                ; MAX II                                ;
@@ -76,24 +76,24 @@ agreement for further details.
 +-----------------------------------------------------------------------------+-----------+---------------+
 
 
-+----------------------------------------------------------+
-; Assembler Generated Files                                ;
-+----------------------------------------------------------+
-; File Name                                                ;
-+----------------------------------------------------------+
-; C:/HDD/designs/cpucomponents/output_files/regfile8x6.pof ;
-+----------------------------------------------------------+
++---------------------------------------------------------------------+
+; Assembler Generated Files                                           ;
++---------------------------------------------------------------------+
+; File Name                                                           ;
++---------------------------------------------------------------------+
+; C:/HDD/designs/cpucomponents/regfile8x6/output_files/regfile8x6.pof ;
++---------------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/HDD/designs/cpucomponents/output_files/regfile8x6.pof ;
-+----------------+-------------------------------------------------------------------+
-; Option         ; Setting                                                           ;
-+----------------+-------------------------------------------------------------------+
-; Device         ; EPM240T100C5                                                      ;
-; JTAG usercode  ; 0x00170AC4                                                        ;
-; Checksum       ; 0x00170EC4                                                        ;
-+----------------+-------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/HDD/designs/cpucomponents/regfile8x6/output_files/regfile8x6.pof ;
++----------------+------------------------------------------------------------------------------+
+; Option         ; Setting                                                                      ;
++----------------+------------------------------------------------------------------------------+
+; Device         ; EPM240T100C5                                                                 ;
+; JTAG usercode  ; 0x0016F94C                                                                   ;
+; Checksum       ; 0x0016FD34                                                                   ;
++----------------+------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -102,14 +102,14 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 15.1.0 Build 185 10/21/2015 SJ Lite Edition
-    Info: Processing started: Tue Jun 19 21:56:11 2018
+    Info: Processing started: Wed Jun 20 19:56:37 2018
 Info: Command: quartus_asm --read_settings_files=on --write_settings_files=off regfile8x6 -c regfile8x6
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 686 megabytes
-    Info: Processing ended: Tue Jun 19 21:56:16 2018
-    Info: Elapsed time: 00:00:05
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Peak virtual memory: 697 megabytes
+    Info: Processing ended: Wed Jun 20 19:57:27 2018
+    Info: Elapsed time: 00:00:50
+    Info: Total CPU time (on all processors): 00:00:07
 
 

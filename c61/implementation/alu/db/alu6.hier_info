@@ -1,0 +1,86 @@
+|alu6
+c_out <= alu3:inst1.c_out
+nx => alu3:inst1.nx
+nx => alu3:inst.nx
+c[0] <= alu3:inst.c[0]
+c[1] <= alu3:inst.c[1]
+c[2] <= alu3:inst.c_out
+c[3] <= alu3:inst1.c[0]
+c[4] <= alu3:inst1.c[1]
+c_in => alu3:inst.c_in
+ns => alu3:inst.ns
+ns => alu3:inst1.ns
+n => alu3:inst.n
+n => alu3:inst1.n
+a[0] => alu3:inst.a[0]
+a[1] => alu3:inst.a[1]
+a[2] => alu3:inst.a[2]
+a[3] => alu3:inst1.a[0]
+a[4] => alu3:inst1.a[1]
+a[5] => alu3:inst1.a[2]
+b[0] => alu3:inst.b[0]
+b[1] => alu3:inst.b[1]
+b[2] => alu3:inst.b[2]
+b[3] => alu3:inst1.b[0]
+b[4] => alu3:inst1.b[1]
+b[5] => alu3:inst1.b[2]
+q[0] <= alu3:inst.q[0]
+q[1] <= alu3:inst.q[1]
+q[2] <= alu3:inst.q[2]
+q[3] <= alu3:inst1.q[0]
+q[4] <= alu3:inst1.q[1]
+q[5] <= alu3:inst1.q[2]
+
+
+|alu6|alu3:inst1
+a[0] => as[0].IN0
+a[1] => as[1].IN0
+a[2] => as[2].IN0
+b[0] => bx[0].IN0
+b[1] => bx[1].IN0
+b[2] => bx[2].IN0
+nx => c_in_x.IN0
+nx => g[0].IN1
+nx => g[1].IN1
+nx => g[2].IN1
+c_in => c_in_x.IN1
+ns => as[2].IN1
+ns => as[1].IN1
+ns => as[0].IN1
+n => bx[2].IN1
+n => bx[1].IN1
+n => bx[0].IN1
+q[0] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= q.DB_MAX_OUTPUT_PORT_TYPE
+c[0] <= c.DB_MAX_OUTPUT_PORT_TYPE
+c[1] <= c.DB_MAX_OUTPUT_PORT_TYPE
+c_out <= c_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|alu6|alu3:inst
+a[0] => as[0].IN0
+a[1] => as[1].IN0
+a[2] => as[2].IN0
+b[0] => bx[0].IN0
+b[1] => bx[1].IN0
+b[2] => bx[2].IN0
+nx => c_in_x.IN0
+nx => g[0].IN1
+nx => g[1].IN1
+nx => g[2].IN1
+c_in => c_in_x.IN1
+ns => as[2].IN1
+ns => as[1].IN1
+ns => as[0].IN1
+n => bx[2].IN1
+n => bx[1].IN1
+n => bx[0].IN1
+q[0] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= q.DB_MAX_OUTPUT_PORT_TYPE
+c[0] <= c.DB_MAX_OUTPUT_PORT_TYPE
+c[1] <= c.DB_MAX_OUTPUT_PORT_TYPE
+c_out <= c_out.DB_MAX_OUTPUT_PORT_TYPE
+
+

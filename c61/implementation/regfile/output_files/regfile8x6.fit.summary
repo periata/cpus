@@ -1,11 +1,11 @@
-Fitter Status : Successful - Tue Jun 19 21:47:10 2018
+Fitter Status : Successful - Wed Jun 20 19:51:14 2018
 Quartus Prime Version : 15.1.0 Build 185 10/21/2015 SJ Lite Edition
 Revision Name : regfile8x6
 Top-level Entity Name : c61registerset
 Family : MAX II
 Device : EPM240T100C5
 Timing Models : Final
-Total logic elements : 142 / 240 ( 59 % )
-Total pins : 63 / 80 ( 79 % )
+Total logic elements : 152 / 240 ( 63 % )
+Total pins : 66 / 80 ( 83 % )
 Total virtual pins : 0
 UFM blocks : 0 / 1 ( 0 % )

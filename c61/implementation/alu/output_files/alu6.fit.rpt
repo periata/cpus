@@ -1,0 +1,479 @@
+Fitter report for alu6
+Thu Jun 21 10:21:01 2018
+Quartus II 32-bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Fitter Summary
+  3. Fitter Settings
+  4. Parallel Compilation
+  5. Pin-Out File
+  6. Fitter Resource Usage Summary
+  7. Input Pins
+  8. Output Pins
+  9. All Package Pins
+ 10. I/O Standard
+ 11. Dedicated Inputs I/O
+ 12. Output Pin Default Load For Reported TCO
+ 13. Fitter Resource Utilization by Entity
+ 14. Non-Global High Fan-Out Signals
+ 15. Other Routing Usage Summary
+ 16. LAB Macrocells
+ 17. Parallel Expander
+ 18. Shareable Expander
+ 19. Logic Cell Interconnection
+ 20. Fitter Device Options
+ 21. Fitter Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++------------------------------------------------------------------------+
+; Fitter Summary                                                         ;
++---------------------------+--------------------------------------------+
+; Fitter Status             ; Successful - Thu Jun 21 10:21:01 2018      ;
+; Quartus II 32-bit Version ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
+; Revision Name             ; alu6                                       ;
+; Top-level Entity Name     ; alu6                                       ;
+; Family                    ; MAX3000A                                   ;
+; Device                    ; EPM3064ATC44-10                            ;
+; Timing Models             ; Final                                      ;
+; Total macrocells          ; 35 / 64 ( 55 % )                           ;
+; Total pins                ; 32 / 34 ( 94 % )                           ;
++---------------------------+--------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------+
+; Fitter Settings                                                                                              ;
++----------------------------------------------------------------------------+-----------------+---------------+
+; Option                                                                     ; Setting         ; Default Value ;
++----------------------------------------------------------------------------+-----------------+---------------+
+; Device                                                                     ; EPM3064ATC44-10 ;               ;
+; Use smart compilation                                                      ; Off             ; Off           ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On              ; On            ;
+; Enable compact report table                                                ; Off             ; Off           ;
+; Optimize Multi-Corner Timing                                               ; Off             ; Off           ;
+; Optimize Timing for ECOs                                                   ; Off             ; Off           ;
+; Regenerate full fit report during ECO compiles                             ; Off             ; Off           ;
+; Optimize IOC Register Placement for Timing                                 ; Normal          ; Normal        ;
+; Limit to One Fitting Attempt                                               ; Off             ; Off           ;
+; Fitter Initial Placement Seed                                              ; 1               ; 1             ;
+; Slow Slew Rate                                                             ; Off             ; Off           ;
+; Fitter Effort                                                              ; Auto Fit        ; Auto Fit      ;
+; Force Fitter to Avoid Periphery Placement Warnings                         ; Off             ; Off           ;
++----------------------------------------------------------------------------+-----------------+---------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 3      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++--------------+
+; Pin-Out File ;
++--------------+
+The pin-out file can be found in /home/jules/cpus/c61/implementation/alu/output_files/alu6.pin.
+
+
++-------------------------------------------------+
+; Fitter Resource Usage Summary                   ;
++------------------------------+------------------+
+; Resource                     ; Usage            ;
++------------------------------+------------------+
+; Logic cells                  ; 35 / 64 ( 55 % ) ;
+; Registers                    ; 0 / 64 ( 0 % )   ;
+; Number of pterms used        ; 155              ;
+; I/O pins                     ; 32 / 34 ( 94 % ) ;
+;     -- Clock pins            ; 1 / 2 ( 50 % )   ;
+;     -- Dedicated input pins  ; 2 / 2 ( 100 % )  ;
+;                              ;                  ;
+; Global signals               ; 0                ;
+; Shareable expanders          ; 18 / 64 ( 28 % ) ;
+; Parallel expanders           ; 11 / 60 ( 18 % ) ;
+; Cells using turbo bit        ; 35 / 64 ( 55 % ) ;
+; Maximum fan-out              ; 34               ;
+; Highest non-global fan-out   ; 34               ;
+; Total fan-out                ; 349              ;
+; Average fan-out              ; 4.11             ;
++------------------------------+------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Input Pins                                                                                                                ;
++------+-------+----------+-----+-----------------------+--------------------+--------+--------------+----------------------+
+; Name ; Pin # ; I/O Bank ; LAB ; Combinational Fan-Out ; Registered Fan-Out ; Global ; I/O Standard ; Location assigned by ;
++------+-------+----------+-----+-----------------------+--------------------+--------+--------------+----------------------+
+; a[0] ; 15    ; --       ; 2   ; 25                    ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; a[1] ; 12    ; --       ; 2   ; 20                    ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; a[2] ; 8     ; --       ; 2   ; 18                    ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; a[3] ; 5     ; --       ; 1   ; 11                    ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; a[4] ; 2     ; --       ; 1   ; 9                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; a[5] ; 39    ; --       ; --  ; 4                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; b[0] ; 18    ; --       ; 3   ; 24                    ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; b[1] ; 13    ; --       ; 2   ; 23                    ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; b[2] ; 10    ; --       ; 2   ; 17                    ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; b[3] ; 6     ; --       ; 1   ; 11                    ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; b[4] ; 3     ; --       ; 1   ; 9                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; b[5] ; 38    ; --       ; --  ; 4                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; c_in ; 14    ; --       ; 2   ; 22                    ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; n    ; 40    ; --       ; --  ; 32                    ; 0                  ; no     ; 3.3-V LVTTL  ; Fitter               ;
+; ns   ; 43    ; --       ; 1   ; 34                    ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; nx   ; 21    ; --       ; 3   ; 22                    ; 0                  ; no     ; 3.3-V LVTTL  ; Fitter               ;
++------+-------+----------+-----+-----------------------+--------------------+--------+--------------+----------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Output Pins                                                                                                                                                                               ;
++-------+-------+----------+-----+-----------------+----------------+------------+---------------+--------------+----------------------+-------+----------------------+---------------------+
+; Name  ; Pin # ; I/O Bank ; LAB ; Output Register ; Slow Slew Rate ; Open Drain ; TRI Primitive ; I/O Standard ; Location assigned by ; Load  ; Output Enable Source ; Output Enable Group ;
++-------+-------+----------+-----+-----------------+----------------+------------+---------------+--------------+----------------------+-------+----------------------+---------------------+
+; c[0]  ; 20    ; --       ; 3   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; Fitter               ; 10 pF ; -                    ; -                   ;
+; c[1]  ; 44    ; --       ; 1   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; Fitter               ; 10 pF ; -                    ; -                   ;
+; c[2]  ; 42    ; --       ; 1   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; Fitter               ; 10 pF ; -                    ; -                   ;
+; c[3]  ; 31    ; --       ; 4   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; Fitter               ; 10 pF ; -                    ; -                   ;
+; c[4]  ; 19    ; --       ; 3   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; Fitter               ; 10 pF ; -                    ; -                   ;
+; c_out ; 34    ; --       ; 4   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; Fitter               ; 10 pF ; -                    ; -                   ;
+; q[0]  ; 22    ; --       ; 3   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; q[1]  ; 25    ; --       ; 3   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; q[2]  ; 27    ; --       ; 4   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; q[3]  ; 28    ; --       ; 4   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; q[4]  ; 33    ; --       ; 4   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; q[5]  ; 35    ; --       ; 4   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
++-------+-------+----------+-----+-----------------+----------------+------------+---------------+--------------+----------------------+-------+----------------------+---------------------+
+
+
++-------------------------------------------------------------------------------------------------------+
+; All Package Pins                                                                                      ;
++----------+------------+----------+----------------+--------+--------------+---------+-----------------+
+; Location ; Pad Number ; I/O Bank ; Pin Name/Usage ; Dir.   ; I/O Standard ; Voltage ; User Assignment ;
++----------+------------+----------+----------------+--------+--------------+---------+-----------------+
+; 1        ; 6          ; --       ; TDI            ; input  ; 3.3-V LVTTL  ;         ; N               ;
+; 2        ; 7          ; --       ; a[4]           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 3        ; 8          ; --       ; b[4]           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 4        ; 9          ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 5        ; 10         ; --       ; a[3]           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 6        ; 11         ; --       ; b[3]           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 7        ; 12         ; --       ; TMS            ; input  ; 3.3-V LVTTL  ;         ; N               ;
+; 8        ; 13         ; --       ; a[2]           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 9        ; 14         ; --       ; VCCIO          ; power  ;              ; 3.3V    ;                 ;
+; 10       ; 15         ; --       ; b[2]           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 11       ; 16         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 12       ; 17         ; --       ; a[1]           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 13       ; 18         ; --       ; b[1]           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 14       ; 19         ; --       ; c_in           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 15       ; 20         ; --       ; a[0]           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 16       ; 21         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 17       ; 22         ; --       ; VCCINT         ; power  ;              ; 3.3V    ;                 ;
+; 18       ; 23         ; --       ; b[0]           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 19       ; 24         ; --       ; c[4]           ; output ; 3.3-V LVTTL  ;         ; N               ;
+; 20       ; 25         ; --       ; c[0]           ; output ; 3.3-V LVTTL  ;         ; N               ;
+; 21       ; 26         ; --       ; nx             ; input  ; 3.3-V LVTTL  ;         ; N               ;
+; 22       ; 27         ; --       ; q[0]           ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 23       ; 28         ; --       ; RESERVED       ;        ;              ;         ;                 ;
+; 24       ; 29         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 25       ; 30         ; --       ; q[1]           ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 26       ; 31         ; --       ; TCK            ; input  ; 3.3-V LVTTL  ;         ; N               ;
+; 27       ; 32         ; --       ; q[2]           ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 28       ; 33         ; --       ; q[3]           ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 29       ; 34         ; --       ; VCCIO          ; power  ;              ; 3.3V    ;                 ;
+; 30       ; 35         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 31       ; 36         ; --       ; c[3]           ; output ; 3.3-V LVTTL  ;         ; N               ;
+; 32       ; 37         ; --       ; TDO            ; output ; 3.3-V LVTTL  ;         ; N               ;
+; 33       ; 38         ; --       ; q[4]           ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 34       ; 39         ; --       ; c_out          ; output ; 3.3-V LVTTL  ;         ; N               ;
+; 35       ; 40         ; --       ; q[5]           ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 36       ; 41         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 37       ; 42         ; --       ; GND+           ;        ;              ;         ;                 ;
+; 38       ; 43         ; --       ; b[5]           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 39       ; 0          ; --       ; a[5]           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 40       ; 1          ; --       ; n              ; input  ; 3.3-V LVTTL  ;         ; N               ;
+; 41       ; 2          ; --       ; VCCINT         ; power  ;              ; 3.3V    ;                 ;
+; 42       ; 3          ; --       ; c[2]           ; output ; 3.3-V LVTTL  ;         ; N               ;
+; 43       ; 4          ; --       ; ns             ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 44       ; 5          ; --       ; c[1]           ; output ; 3.3-V LVTTL  ;         ; N               ;
++----------+------------+----------+----------------+--------+--------------+---------+-----------------+
+Note: Pin directions (input, output or bidir) are based on device operating in user mode.
+
+
++--------------------------------------------------------------------------------------------------+
+; I/O Standard                                                                                     ;
++--------------+------------+----------------------+-------------------+-------------------+-------+
+; I/O Standard ; Input Vref ; Dedicated Input Pins ; Pins in I/O Bank1 ; Pins in I/O Bank2 ; Total ;
++--------------+------------+----------------------+-------------------+-------------------+-------+
+; 3.3-V LVTTL  ; -          ; 3                    ; 0                 ; 0                 ; 3     ;
++--------------+------------+----------------------+-------------------+-------------------+-------+
+
+
++--------------------------------------------------------------------+
+; Dedicated Inputs I/O                                               ;
++------+-------+-------+-------+--------------+------------+---------+
+; Name ; Pin # ; Type  ; VCCIO ; I/O Standard ; Input Vref ; Current ;
++------+-------+-------+-------+--------------+------------+---------+
+; a[5] ; 39    ; Input ; --    ; 3.3-V LVTTL  ; -          ; 0 mA    ;
+; b[5] ; 38    ; Input ; --    ; 3.3-V LVTTL  ; -          ; 0 mA    ;
+; n    ; 40    ; Input ; --    ; 3.3-V LVTTL  ; -          ; 0 mA    ;
++------+-------+-------+-------+--------------+------------+---------+
+
+
++-----------------------------------------------+
+; Output Pin Default Load For Reported TCO      ;
++--------------+-------+------------------------+
+; I/O Standard ; Load  ; Termination Resistance ;
++--------------+-------+------------------------+
+; 3.3-V LVTTL  ; 10 pF ; Not Available          ;
+; 3.3-V LVCMOS ; 10 pF ; Not Available          ;
+; 3.3-V PCI    ; 10 pF ; 25 Ohm (Parallel)      ;
+; 2.5 V        ; 10 pF ; Not Available          ;
++--------------+-------+------------------------+
+Note: User assignments will override these defaults. The user specified values are listed in the Output Pins and Bidir Pins tables.
+
+
++-------------------------------------------------------------------------------------+
+; Fitter Resource Utilization by Entity                                               ;
++----------------------------+------------+------+---------------------+--------------+
+; Compilation Hierarchy Node ; Macrocells ; Pins ; Full Hierarchy Name ; Library Name ;
++----------------------------+------------+------+---------------------+--------------+
+; |alu6                      ; 35         ; 32   ; |alu6               ; work         ;
+;    |alu3:inst1|            ; 18         ; 0    ; |alu6|alu3:inst1    ; work         ;
+;    |alu3:inst|             ; 17         ; 0    ; |alu6|alu3:inst     ; work         ;
++----------------------------+------------+------+---------------------+--------------+
+
+
++-------------------------------------+
+; Non-Global High Fan-Out Signals     ;
++---------------------------+---------+
+; Name                      ; Fan-Out ;
++---------------------------+---------+
+; ns                        ; 34      ;
+; n                         ; 32      ;
+; a[0]                      ; 25      ;
+; b[0]                      ; 24      ;
+; b[1]                      ; 23      ;
+; c_in                      ; 22      ;
+; nx                        ; 22      ;
+; a[1]                      ; 20      ;
+; a[2]                      ; 18      ;
+; b[2]                      ; 17      ;
+; b[3]                      ; 11      ;
+; a[3]                      ; 11      ;
+; b[4]                      ; 9       ;
+; a[4]                      ; 9       ;
+; b[5]                      ; 4       ;
+; a[5]                      ; 4       ;
+; alu3:inst1|c[1]~10        ; 3       ;
+; alu3:inst1|c[1]~150       ; 2       ;
+; alu3:inst1|c[1]~23        ; 2       ;
+; alu3:inst|c_out~21        ; 2       ;
+; alu3:inst1|c[1]~13        ; 2       ;
+; alu3:inst1|c[1]~11        ; 2       ;
+; alu3:inst1|c[1]~9         ; 2       ;
+; alu3:inst1|c[1]~8         ; 2       ;
+; alu3:inst1|c[1]~7         ; 2       ;
+; alu3:inst1|q[0]~9         ; 2       ;
+; alu3:inst1|c[1]~153       ; 1       ;
+; alu3:inst1|c[1]~152       ; 1       ;
+; alu3:inst1|c[1]~151       ; 1       ;
+; alu3:inst1|g[1]~7sexpbal  ; 1       ;
+; alu3:inst1|as[0]~1sexpbal ; 1       ;
+; alu3:inst1|as[1]~5sexpbal ; 1       ;
+; alu3:inst|q[2]~14bal      ; 1       ;
+; alu3:inst|q[2]~21sexp4bal ; 1       ;
+; alu3:inst1|q[1]~24bal     ; 1       ;
+; alu3:inst1|q[0]~5bal      ; 1       ;
+; alu3:inst1|q[2]~35bal     ; 1       ;
+; alu3:inst|q[2]~22bal      ; 1       ;
+; alu3:inst1|c[1]~48        ; 1       ;
+; alu3:inst|c_out~40        ; 1       ;
+; alu3:inst|c_out~34        ; 1       ;
+; alu3:inst1|q[1]~51        ; 1       ;
+; alu3:inst1|c[1]~44        ; 1       ;
+; alu3:inst1|q[0]~46        ; 1       ;
+; alu3:inst|c_out~28        ; 1       ;
+; alu3:inst|c_out~22        ; 1       ;
+; alu3:inst|c[1]~17         ; 1       ;
+; alu3:inst|q[1]~31         ; 1       ;
+; alu3:inst|q[1]~29         ; 1       ;
+; alu3:inst1|q[2]~39        ; 1       ;
+; alu3:inst1|c[1]~37        ; 1       ;
+; alu3:inst1|c[1]~22        ; 1       ;
+; alu3:inst1|c[1]~21        ; 1       ;
+; alu3:inst1|c_out~22       ; 1       ;
+; alu3:inst1|c_out~16       ; 1       ;
+; alu3:inst1|c_out~13       ; 1       ;
+; alu3:inst1|q[1]~28        ; 1       ;
+; alu3:inst1|c[1]~19        ; 1       ;
+; alu3:inst1|q[0]~10        ; 1       ;
+; alu3:inst1|q[0]~3         ; 1       ;
+; alu3:inst1|q[0]~2         ; 1       ;
+; alu3:inst1|q[0]~1         ; 1       ;
+; alu3:inst1|q[0]~0         ; 1       ;
+; alu3:inst|c_out~15        ; 1       ;
+; alu3:inst|q[2]~24         ; 1       ;
+; alu3:inst|c[1]~16         ; 1       ;
+; alu3:inst|q[1]~7          ; 1       ;
+; alu3:inst|c[1]~10         ; 1       ;
+; alu3:inst|q[0]~0          ; 1       ;
++---------------------------+---------+
+
+
++-------------------------------------------------+
+; Other Routing Usage Summary                     ;
++-----------------------------+-------------------+
+; Other Routing Resource Type ; Usage             ;
++-----------------------------+-------------------+
+; Output enables              ; 0 / 6 ( 0 % )     ;
+; PIA buffers                 ; 52 / 144 ( 36 % ) ;
++-----------------------------+-------------------+
+
+
++----------------------------------------------------------------------+
+; LAB Macrocells                                                       ;
++----------------------------------------+-----------------------------+
+; Number of Macrocells  (Average = 8.75) ; Number of LABs  (Total = 3) ;
++----------------------------------------+-----------------------------+
+; 0                                      ; 1                           ;
+; 1                                      ; 0                           ;
+; 2                                      ; 0                           ;
+; 3                                      ; 0                           ;
+; 4                                      ; 0                           ;
+; 5                                      ; 0                           ;
+; 6                                      ; 0                           ;
+; 7                                      ; 0                           ;
+; 8                                      ; 1                           ;
+; 9                                      ; 0                           ;
+; 10                                     ; 0                           ;
+; 11                                     ; 0                           ;
+; 12                                     ; 0                           ;
+; 13                                     ; 1                           ;
+; 14                                     ; 1                           ;
++----------------------------------------+-----------------------------+
+
+
++---------------------------------------------------------+
+; Parallel Expander                                       ;
++--------------------------+------------------------------+
+; Parallel Expander Length ; Number of Parallel Expanders ;
++--------------------------+------------------------------+
+; 0                        ; 0                            ;
+; 1                        ; 5                            ;
+; 2                        ; 3                            ;
++--------------------------+------------------------------+
+
+
++-------------------------------------------------------------------------------+
+; Shareable Expander                                                            ;
++-------------------------------------------------+-----------------------------+
+; Number of shareable expanders  (Average = 4.50) ; Number of LABs  (Total = 2) ;
++-------------------------------------------------+-----------------------------+
+; 0                                               ; 2                           ;
+; 1                                               ; 0                           ;
+; 2                                               ; 0                           ;
+; 3                                               ; 0                           ;
+; 4                                               ; 0                           ;
+; 5                                               ; 0                           ;
+; 6                                               ; 0                           ;
+; 7                                               ; 1                           ;
+; 8                                               ; 0                           ;
+; 9                                               ; 0                           ;
+; 10                                              ; 0                           ;
+; 11                                              ; 1                           ;
++-------------------------------------------------+-----------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Logic Cell Interconnection                                                                                                                                                                                                            ;
++-----+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------+
+; LAB ; Logic Cell ; Input                                                                                                                                                                    ; Output                                  ;
++-----+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------+
+;  A  ; LC10       ; a[1], ns, n, b[1], nx, a[0], b[0]                                                                                                                                        ; alu3:inst|c[1]~16                       ;
+;  A  ; LC14       ; c_in, a[0], a[2], nx, ns, a[1], b[0], n, b[2], b[1]                                                                                                                      ; alu3:inst|c_out~28                      ;
+;  A  ; LC5        ; alu3:inst|c_out~40, a[0], b[0], nx, n, b[2], ns, a[1], a[2], b[1]                                                                                                        ; alu3:inst1|c_out~22, alu3:inst1|q[2]~39 ;
+;  A  ; LC11       ; alu3:inst|c[1]~17, a[1], ns, a[0], nx, c_in, n, b[0], b[1]                                                                                                               ; c[1]                                    ;
+;  A  ; LC4        ; alu3:inst|c_out~34, c_in, b[0], a[2], nx, n, ns, b[1], a[0], b[2], a[1]                                                                                                  ; alu3:inst|c_out~21                      ;
+;  A  ; LC16       ; alu3:inst|c_out~28, a[0], b[0], nx, n, b[2], ns, a[1], a[2], b[1]                                                                                                        ; c[2]                                    ;
+;  A  ; LC3        ; c_in, a[0], a[2], nx, ns, a[1], b[0], n, b[2], b[1]                                                                                                                      ; alu3:inst|c_out~40                      ;
+;  A  ; LC15       ; alu3:inst|c_out~22, c_in, b[0], a[2], nx, n, ns, b[1], a[0], b[2], a[1]                                                                                                  ; alu3:inst|c_out~15                      ;
+;  C  ; LC36       ; ns, a[0], nx, n, b[0], c_in                                                                                                                                              ; c[0]                                    ;
+;  C  ; LC46       ; alu3:inst|q[1]~31, ns, a[0], nx, c_in, n, b[1], b[0], a[1]                                                                                                               ; q[1]                                    ;
+;  C  ; LC38       ; ns, a[0], n, b[1], nx, b[0], c_in                                                                                                                                        ; alu3:inst|q[2]~24                       ;
+;  C  ; LC41       ; n, b[2], ns, a[2]                                                                                                                                                        ; alu3:inst|q[2]~24                       ;
+;  C  ; LC43       ; ns, a[4], n, b[4]                                                                                                                                                        ; alu3:inst1|q[2]~39                      ;
+;  C  ; LC33       ; ns, a[3], n, b[3]                                                                                                                                                        ; alu3:inst1|q[2]~39                      ;
+;  C  ; LC35       ; alu3:inst1|c[1]~48, a[1], b[1], alu3:inst1|c[1]~23, alu3:inst1|c[1]~150, alu3:inst1|c[1]~151, nx, a[4], alu3:inst1|c[1]~152, alu3:inst1|c[1]~153, c_in, a[0], b[0], b[4] ; c[4]                                    ;
+;  C  ; LC44       ; ns, b[1], c_in, n                                                                                                                                                        ; alu3:inst|q[1]~31                       ;
+;  C  ; LC45       ; alu3:inst|q[1]~29, ns, b[1], n, b[0], a[0], c_in, nx                                                                                                                     ; alu3:inst|q[1]~7                        ;
+;  C  ; LC40       ; n, b[0], nx, c_in, ns, a[0]                                                                                                                                              ; q[0]                                    ;
+;  C  ; LC34       ; alu3:inst1|c[1]~21, n, nx, alu3:inst1|c[1]~22, ns, a[3], b[3], alu3:inst1|c[1]~23, a[4], a[2], b[2], alu3:inst1|c[1]~150, b[4]                                           ; alu3:inst1|c[1]~37                      ;
+;  C  ; LC39       ; a[1], ns, n, b[1], nx, c_in, b[0], a[0]                                                                                                                                  ; alu3:inst|q[2]~24                       ;
+;  C  ; LC37       ; n, ns, b[3], a[3]                                                                                                                                                        ; alu3:inst1|q[0]~10                      ;
+;  C  ; LC48       ; ns, a[4], n, b[4]                                                                                                                                                        ; alu3:inst1|q[1]~28                      ;
+;  D  ; LC49       ; n, b[2], ns, a[2], alu3:inst|q[2]~14bal, alu3:inst|q[2]~22bal, alu3:inst|q[2]~21sexp4bal                                                                                 ; q[2]                                    ;
+;  D  ; LC51       ; alu3:inst1|q[0]~46, alu3:inst1|q[0]~2, c_in, a[2], nx, n, ns, b[1], alu3:inst1|q[0]~0, a[1], alu3:inst1|q[0]~3, b[0], a[0], alu3:inst1|q[0]~5bal, alu3:inst1|q[0]~9      ; q[3]                                    ;
+;  D  ; LC53       ; alu3:inst1|c[1]~44, alu3:inst1|c[1]~10, a[2], b[2], a[3], alu3:inst1|c[1]~11, a[1], b[1], alu3:inst1|c[1]~9, a[0], b[0], alu3:inst1|c[1]~13, c_in, b[3]                  ; c[3]                                    ;
+;  D  ; LC57       ; alu3:inst1|q[1]~51, a[3], alu3:inst1|c[1]~10, alu3:inst1|c[1]~11, a[1], b[1], alu3:inst1|c[1]~9, a[0], b[0], alu3:inst1|c[1]~13, c_in, alu3:inst1|q[1]~24bal, b[3]       ; q[4]                                    ;
+;  D  ; LC62       ; alu3:inst|c_out~21, alu3:inst1|c_out~13, nx, alu3:inst1|c_out~16, ns, a[5], b[5], n, a[3], b[3], a[4], b[4]                                                              ; c_out                                   ;
+;  D  ; LC59       ; ns, a[5], n, b[5]                                                                                                                                                        ; alu3:inst1|q[2]~39                      ;
+;  D  ; LC50       ; c_in, a[0], a[2], nx, ns, a[1], b[0], n, b[2], b[1], alu3:inst1|q[0]~1                                                                                                   ; alu3:inst1|q[0]~10                      ;
+;  D  ; LC52       ; nx, alu3:inst1|c[1]~7, n, alu3:inst1|c[1]~8, ns                                                                                                                          ; alu3:inst1|c[1]~19                      ;
+;  D  ; LC56       ; nx, alu3:inst1|c[1]~7, n, alu3:inst1|c[1]~8, ns, alu3:inst1|c[1]~10, a[2], b[2]                                                                                          ; alu3:inst1|q[1]~28                      ;
+;  D  ; LC58       ; ns, a[5], n, b[5]                                                                                                                                                        ; alu3:inst1|c_out~22                     ;
+;  D  ; LC61       ; a[4], ns, a[5], n, b[5], b[4]                                                                                                                                            ; alu3:inst1|c_out~22                     ;
+;  D  ; LC64       ; alu3:inst|c_out~21, nx, alu3:inst1|q[2]~35bal, alu3:inst1|as[0]~1sexpbal, alu3:inst1|q[0]~9, alu3:inst1|g[1]~7sexpbal, alu3:inst1|as[1]~5sexpbal                         ; q[5]                                    ;
+;  D  ; LC55       ; ns, a[4], n, b[4]                                                                                                                                                        ; alu3:inst1|q[2]~39                      ;
++-----+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------+
+
+
++---------------------------------------------------------------+
+; Fitter Device Options                                         ;
++----------------------------------------------+----------------+
+; Option                                       ; Setting        ;
++----------------------------------------------+----------------+
+; Enable user-supplied start-up clock (CLKUSR) ; Off            ;
+; Enable device-wide reset (DEV_CLRn)          ; Off            ;
+; Enable device-wide output enable (DEV_OE)    ; Off            ;
+; Enable INIT_DONE output                      ; Off            ;
+; Configuration scheme                         ; Passive Serial ;
+; Security bit                                 ; Off            ;
+; Base pin-out file on sameframe device        ; Off            ;
++----------------------------------------------+----------------+
+
+
++-----------------+
+; Fitter Messages ;
++-----------------+
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (119006): Selected device EPM3064ATC44-10 for design "alu6"
+Info: Quartus II 32-bit Fitter was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 293 megabytes
+    Info: Processing ended: Thu Jun 21 10:21:01 2018
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:03
+
+

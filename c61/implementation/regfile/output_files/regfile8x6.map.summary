@@ -1,9 +1,9 @@
-Analysis & Synthesis Status : Successful - Tue Jun 19 21:03:10 2018
+Analysis & Synthesis Status : Successful - Wed Jun 20 19:50:40 2018
 Quartus Prime Version : 15.1.0 Build 185 10/21/2015 SJ Lite Edition
 Revision Name : regfile8x6
 Top-level Entity Name : c61registerset
 Family : MAX II
-Total logic elements : 238
-Total pins : 63
+Total logic elements : 248
+Total pins : 66
 Total virtual pins : 0
 UFM blocks : 0 / 1 ( 0 % )

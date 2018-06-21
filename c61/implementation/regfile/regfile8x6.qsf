@@ -48,11 +48,8 @@ set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR "-1"
 set_global_assignment -name POWER_EXT_SUPPLY_VOLTAGE_TO_REGULATOR 3.3V
-set_global_assignment -name VERILOG_FILE regfile.v
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH STILL AIR"
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
-set_global_assignment -name BDF_FILE c61registerset.bdf
-set_global_assignment -name VERILOG_FILE plus1.v
 set_location_assignment PIN_77 -to ra0[5]
 set_location_assignment PIN_76 -to ra0[4]
 set_location_assignment PIN_75 -to ra0[3]
@@ -117,3 +114,13 @@ set_location_assignment PIN_7 -to we0
 set_location_assignment PIN_29 -to we1
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_location_assignment PIN_8 -to /ra0_sel7
+set_location_assignment PIN_18 -to /rb1_sel0
+set_location_assignment PIN_95 -to /wd0_ra0i
+set_global_assignment -name OPTIMIZATION_MODE "AGGRESSIVE PERFORMANCE"
+set_global_assignment -name TIMEQUEST_DO_REPORT_TIMING ON
+set_global_assignment -name SDC_FILE regfile8x6.out.sdc
+set_global_assignment -name VERILOG_FILE regfile.v
+set_global_assignment -name BDF_FILE c61registerset.bdf
+set_global_assignment -name VERILOG_FILE plus1.v
+set_global_assignment -name VERILOG_FILE select_or_force.v
