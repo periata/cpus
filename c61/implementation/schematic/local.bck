@@ -1,0 +1,23 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP 74HC365
+D Hex Bus Driver, 3 State Out
+K TTL Buffer BUS 3State
+$ENDCMP
+#
+$CMP 74HC93
+D Divide by 2 & 8 counter
+K HCMOS CNT CNT4
+$ENDCMP
+#
+$CMP CONN_02X03_PWR
+D Connector, double row, 02x03, pin header
+K connector
+$ENDCMP
+#
+$CMP EPM3064ATC44-ALU6
+D ALU6 (In an Altera Max3000A CPLD)
+K ALU
+$ENDCMP
+#
+#End Doc Library
