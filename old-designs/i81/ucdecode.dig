@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes>
+    <entry>
+      <string>Width</string>
+      <int>10</int>
+    </entry>
+  </attributes>
+  <visualElements>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>UCSTEP</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>3</int>
+        </entry>
+      </elementAttributes>
+      <pos x="140" y="20"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>OPCODE</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>5</int>
+        </entry>
+      </elementAttributes>
+      <pos x="140" y="80"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>splitterSpreading</string>
+          <int>2</int>
+        </entry>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>5</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>4-4,3-3,2-2,1-1,0-0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="360" y="100"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>splitterSpreading</string>
+          <int>2</int>
+        </entry>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>3</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>2-2,1-1,0-0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="500" y="40"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>NEXTINSN</string>
+        </entry>
+      </elementAttributes>
+      <pos x="980" y="220"/>
+    </visualElement>
+    <visualElement>
+      <elementName>And</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Inputs</string>
+          <int>8</int>
+        </entry>
+      </elementAttributes>
+      <pos x="640" y="140"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>UCS_1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="980" y="400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>UCS_2</string>
+        </entry>
+      </elementAttributes>
+      <pos x="980" y="560"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>UCS_2.._1 selects next ucode step:
+  00 - hold
+  01 - increment
+  10 - set to 1
+  11 - set to 5</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1120" y="400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>OPCODE MAP</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-940" y="-140"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>14</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>YIELD A
+YIELD B
+TAKE A
+TAKE B
+
+FETCH A, #0
+SEND A, #n
+LOAD A, (nn)
+LOAD A, (B)
+
+EX A, B
+LDC A, n
+STORE (nn), A
+STORE (B), A
+
+OP n, A, B
+MARK
+RESET NZ
+(prefix for extended ops)</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-940" y="-100"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>QUEUE MEMORY MAP</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-500" y="-140"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>14</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>Each queue has 2KB allocated.  Address fields:
+
+  0bQQQQXXXNNNNNNNN (15 bits = 32K)
+
+Q: queue number. 16 queues exist; these can be arbitrarily assigned to
+8 DMA channels (which may be set up for either read or write),
+8 IO input channels  and 8 IO output channels.  Each queue can have
+one input and one output.
+
+X: memory block - 8 memory blocks may be assigned to different functions
+by control register settings:
+* queue storage
+* queue filler program (may not be assigned to block 0)
+* output interrupt handling program (may not be assigned to block 0)
+* scratch storage (may only be in blocks 0-3)
+* callable peripheral control functions
+* translation table
+
+(input interrupts may also exist, but will simply cause execution of queue filler
+to be started for a single run)
+
+N: offset within block, determined by usage.
+
+Queue registers (bit numbers):
+0-2: queue storage block
+3-5: filler program block
+6-7: scratch block
+8-10: output interrupt handler block
+11: 1 if currently handling an interrupt
+12-19: program counter
+20: 0 =&gt; &apos;A&apos; register stored in &apos;X&apos;, &apos;B&apos; register stored in &apos;Y&apos;; 1 =&gt; converse
+21: zero flag for last operation
+22: carry flag for last operation
+23: last queue operation was 0=take; 1=put
+24-31: &apos;X&apos; register
+32-39: &apos;Y&apos; register
+40-43: &apos;P&apos; register
+44-47: &apos;S&apos; register
+48-55: queue head pointer
+56-63: queue tail pointer
+
+DMA Registers:
+00-23: current DMA pointer
+24-39: DMA length remaining
+40-47: DMA stride
+48-51: Target queue ID
+52: rd/~wr
+53: Priority
+54: Active</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-500" y="-100"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>14</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>PASS nn, @m
+SWITCH @n
+IGNORE
+STOP
+
+FETCH B, #n
+SEND B, #n
+IN A, (nn)
+IN B, (nn)
+
+CP A,B
+LDC B, n
+OUT (nn), A
+OUT (nn), B
+
+OP m, A, nn
+SKIP NZ
+RESET Z
+SKIP Z</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-740" y="-100"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>74181 OPCODE MAPPING</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-940" y="260"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>14</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>00000 F=A+C
+00001 F=(A|B)+C    ?
+00011 F=-1+C
+00110 F=A-B-1+C
+01001 F=A+B+C
+01011 F=(A&amp;B)-1+C
+01100 F=A+A+C
+01111 F=A-1+C</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-900" y="320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>14</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>10000 F=not A
+10001 F=not (A|B)
+10011 F=0
+10110 F=AXB
+11001 F=not AXB
+11011 F=A&amp;B
+11100 F=1
+11110 F=A|B</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-740" y="320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>20</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-860" y="300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>20</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>8</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-700" y="300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>14</int>
+        </entry>
+        <entry>
+          <string>Description</string>
+          <string>0
+1
+2
+3
+4
+5
+6
+7</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-940" y="320"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="140" y="80"/>
+      <p2 x="360" y="80"/>
+    </wire>
+    <wire>
+      <p1 x="460" y="160"/>
+      <p2 x="640" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="320" y="240"/>
+      <p2 x="640" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="140" y="20"/>
+      <p2 x="500" y="20"/>
+    </wire>
+    <wire>
+      <p1 x="420" y="180"/>
+      <p2 x="640" y="180"/>
+    </wire>
+    <wire>
+      <p1 x="280" y="260"/>
+      <p2 x="640" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="360" y="200"/>
+      <p2 x="640" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="240" y="280"/>
+      <p2 x="640" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="500" y="140"/>
+      <p2 x="640" y="140"/>
+    </wire>
+    <wire>
+      <p1 x="200" y="300"/>
+      <p2 x="640" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="220"/>
+      <p2 x="980" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="320" y="120"/>
+      <p2 x="320" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="240" y="120"/>
+      <p2 x="240" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="500" y="20"/>
+      <p2 x="500" y="40"/>
+    </wire>
+    <wire>
+      <p1 x="500" y="60"/>
+      <p2 x="500" y="140"/>
+    </wire>
+    <wire>
+      <p1 x="420" y="60"/>
+      <p2 x="420" y="180"/>
+    </wire>
+    <wire>
+      <p1 x="360" y="80"/>
+      <p2 x="360" y="100"/>
+    </wire>
+    <wire>
+      <p1 x="360" y="120"/>
+      <p2 x="360" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="280" y="120"/>
+      <p2 x="280" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="200" y="120"/>
+      <p2 x="200" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="460" y="60"/>
+      <p2 x="460" y="160"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>
