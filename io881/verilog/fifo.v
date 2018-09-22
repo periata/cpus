@@ -21,7 +21,7 @@ module fifo_element (clk, d_in, d_in_strobe, q, q_ready, in_strobe_chain, q_out_
 
    assign q = used ? store : d_in;
    assign in_strobe_chain = next_used ? 0 : d_in_strobe;
-   assign out_strobe_chain = prev_used ? q_out_strobe : 0;
+   assign out_strobe_chain = prev_used ? q_out_strobe | ~used : 0;
    
    always @(posedge clk)
      begin
@@ -34,9 +34,10 @@ module fifo_element (clk, d_in, d_in_strobe, q, q_ready, in_strobe_chain, q_out_
 	  begin
 	     used <= 0;
 	  end
-	else if (q_out_strobe && prev_used)
+	else if (out_strobe_chain)
 	  begin
 	     store <= d_in;
+	     used <= 1;
 	  end
      end
 
