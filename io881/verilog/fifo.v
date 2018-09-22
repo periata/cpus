@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 
 module fifo_element (clk, d_in, d_in_strobe, q, q_ready, in_strobe_chain, q_out_strobe, out_strobe_chain,
-		     prev_used, next_used, used);
+		     prev_used, next_used, used, reset);
 
    parameter WIDTH = 4;
 
@@ -16,36 +16,41 @@ module fifo_element (clk, d_in, d_in_strobe, q, q_ready, in_strobe_chain, q_out_
    input 	      prev_used; 	      
    input              next_used; 	      
    output reg 	      used = 0;
+   input 	      reset;
 
    reg [WIDTH-1:0]    store;
 
    assign q = used ? store : d_in;
    assign in_strobe_chain = next_used ? 0 : d_in_strobe;
    assign out_strobe_chain = prev_used ? q_out_strobe | ~used : 0;
+
+   always @(posedge reset)
+     used <= 0;
    
    always @(posedge clk)
-     begin
-	if (d_in_strobe && next_used)
-	  begin
-	     store <= d_in;
-	     used <= 1;
-	  end
-	else if (q_out_strobe && !prev_used)
-	  begin
-	     used <= 0;
-	  end
-	else if (out_strobe_chain)
-	  begin
-	     store <= d_in;
-	     used <= 1;
-	  end
-     end
-
+     if (!reset)
+       begin
+	  if (d_in_strobe && next_used)
+	    begin
+	       store <= d_in;
+	       used <= 1;
+	    end
+	  else if (q_out_strobe && !prev_used)
+	    begin
+	       used <= 0;
+	    end
+	  else if (out_strobe_chain)
+	    begin
+	       store <= d_in;
+	       used <= 1;
+	    end
+       end
+   
    
 endmodule
 
    
-module fifo (clk, d_in, d_in_strobe, q, q_ready, q_out_strobe, full, empty);
+module fifo (clk, d_in, d_in_strobe, q, q_ready, q_out_strobe, full, empty, reset);
 
    parameter WIDTH = 4, DEPTH = 5;
 
@@ -57,6 +62,7 @@ module fifo (clk, d_in, d_in_strobe, q, q_ready, q_out_strobe, full, empty);
    input 		  q_out_strobe;
    output 		  full;
    output 		  empty;
+   input 		  reset; 		  
 
    // e_qd connects the q of one element to the d_in of the next (with appropriate adjustments at the ends)
    wire [WIDTH-1:0] 	  e_qd [DEPTH:0];
@@ -94,7 +100,8 @@ module fifo (clk, d_in, d_in_strobe, q, q_ready, q_out_strobe, full, empty);
 				       .out_strobe_chain(e_out_strobe[i]),
 				       .prev_used(i == 0 ? 1'b0 : e_used [i-1]), 
 				       .next_used(i == DEPTH-1 ? 1'b1 : e_used [i+1]), 
-				       .used(e_used[i]));
+				       .used(e_used[i]),
+				       .reset(reset));
       end
    endgenerate
 

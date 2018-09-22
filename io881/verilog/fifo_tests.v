@@ -2,17 +2,18 @@
 
 module fifo_tests;
    reg        clk;
-   reg [6:0]  enables;
-   wire [6:0] fails;
+   reg [7:0]  enables;
+   wire [7:0] fails;
    tri0       done;
    
    fifo_test_element_stores_if_next_full test0 (.clk(clk), .en(enables[0]), .fail(fails[0]), .done(done));
    fifo_test_element_passes_if_next_empty test1 (.clk(clk), .en(enables[1]), .fail(fails[1]), .done(done));
    fifo_test_element_resets_if_prev_empty test2 (.clk(clk), .en(enables[2]), .fail(fails[2]), .done(done));
    fifo_test_element_copies_prev_if_full test3 (.clk(clk), .en(enables[3]), .fail(fails[3]), .done(done));
-   fifo_test_int_degenerate test4 (.clk(clk), .en(enables[4]), .fail(fails[4]), .done(done));
-   fifo_test_int_2st test5 (.clk(clk), .en(enables[5]), .fail(fails[5]), .done(done));
-   fifo_test_int_big test6 (.clk(clk), .en(enables[6]), .fail(fails[6]), .done(done));
+   fifo_test_element_resettable test4 (.clk(clk), .en(enables[4]), .fail(fails[4]), .done(done)); 
+   fifo_test_int_degenerate test5 (.clk(clk), .en(enables[5]), .fail(fails[5]), .done(done));
+   fifo_test_int_2st test6 (.clk(clk), .en(enables[6]), .fail(fails[6]), .done(done));
+   fifo_test_int_big test7 (.clk(clk), .en(enables[7]), .fail(fails[7]), .done(done));
    
    always #25  // 20MHz
    //always #30 // 16.7MHz
