@@ -2486,16 +2486,16 @@
       <elementName>Const</elementName>
       <elementAttributes>
         <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
           <string>Value</string>
           <long>0</long>
         </entry>
         <entry>
           <string>Bits</string>
           <int>2</int>
-        </entry>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
         </entry>
       </elementAttributes>
       <pos x="1700" y="680"/>
@@ -2504,12 +2504,12 @@
       <elementName>Multiplexer</elementName>
       <elementAttributes>
         <entry>
-          <string>Bits</string>
-          <int>6</int>
-        </entry>
-        <entry>
           <string>Selector Bits</string>
           <int>2</int>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>6</int>
         </entry>
       </elementAttributes>
       <pos x="1560" y="240"/>

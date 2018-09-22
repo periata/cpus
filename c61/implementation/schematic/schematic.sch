@@ -34,7 +34,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 8
+Sheet 1 9
 Title ""
 Date ""
 Rev ""
@@ -329,37 +329,84 @@ Connection ~ 4300 2850
 Connection ~ 2200 2250
 Connection ~ 2500 2350
 $Sheet
-S 9200 2500 1200 1300
+S 9700 2500 1200 1300
 U 5B67573A
 F0 "ALU" 60
 F1 "alu.sch" 60
-F2 "q_rbims1[0..5]" I L 9200 2650 60 
-F3 "q_ravals1[0..5]" I L 9200 2800 60 
-F4 "op_subcmp" I L 9200 3000 60 
-F5 "~op_xor" I L 9200 3100 60 
-F6 "~op_mov" I L 9200 3200 60 
-F7 "op_invert" I L 9200 3300 60 
-F8 "~op_andor" I L 9200 3400 60 
-F9 "op_postinvert" I L 9200 3500 60 
-F10 "op_or" I L 9200 3600 60 
-F11 "~enable" I L 9200 3700 60 
-F12 "out[0..5]" T R 10400 2900 60 
-F13 "negative" T R 10400 3400 60 
-F14 "carry_out" O R 10400 3600 60 
+F2 "q_rbims1[0..5]" I L 9700 2650 60 
+F3 "q_ravals1[0..5]" I L 9700 2800 60 
+F4 "op_subcmp" I L 9700 3000 60 
+F5 "~op_xor" I L 9700 3100 60 
+F6 "~op_mov" I L 9700 3200 60 
+F7 "op_invert" I L 9700 3300 60 
+F8 "~op_andor" I L 9700 3400 60 
+F9 "op_postinvert" I L 9700 3500 60 
+F10 "op_or" I L 9700 3600 60 
+F11 "~enable" I L 9700 3700 60 
+F12 "out[0..5]" T R 10900 2900 60 
+F13 "negative" T R 10900 3400 60 
+F14 "carry_out" O R 10900 3600 60 
 $EndSheet
 $Sheet
-S 8300 2950 800  1300
+S 8300 2950 1250 1400
 U 5B6757FA
 F0 "Stage 2 control" 60
 F1 "s2control.sch" 60
+F2 "insn_s1" I L 8300 3450 60 
+F3 "ext_s1" I L 8300 3550 60 
+F4 "extmode_s1" I L 8300 3650 60 
+F5 "extsel_s1" I L 8300 3750 60 
+F6 "extop_s1" I L 8300 3850 60 
+F7 "extcarry_s1" I L 8300 4050 60 
+F8 "op_subcmp" O R 9550 3000 60 
+F9 "~op_xor" O R 9550 3100 60 
+F10 "~op_mov" O R 9550 3200 60 
+F11 "~op_andor" O R 9550 3400 60 
+F12 "op_invert" O R 9550 3300 60 
+F13 "op_or" O R 9550 3600 60 
+F14 "op_postinvert" O R 9550 3500 60 
+F15 "~alu_enable" O R 9550 3700 60 
+F16 "~op_store" O R 9550 3950 60 
+F17 "~op_load" O R 9550 4050 60 
+F18 "~op_ifeq" O R 9550 4150 60 
+F19 "~op_ifxxx" O R 9550 4250 60 
 $EndSheet
 Wire Bus Line
 	7950 3050 8250 3050
 Wire Bus Line
 	8250 3050 8250 2800
 Wire Bus Line
-	8250 2800 9200 2800
+	8250 2800 9700 2800
 Wire Bus Line
-	7950 2650 9200 2650
+	7950 2650 9700 2650
 NoConn ~ 8850 2500
+Wire Wire Line
+	9550 3000 9700 3000
+Wire Wire Line
+	9550 3100 9700 3100
+Wire Wire Line
+	9550 3200 9700 3200
+Wire Wire Line
+	9550 3300 9700 3300
+Wire Wire Line
+	9550 3400 9700 3400
+Wire Wire Line
+	9550 3500 9700 3500
+Wire Wire Line
+	9550 3600 9700 3600
+Wire Wire Line
+	9550 3700 9700 3700
+$Sheet
+S 7650 800  1350 650 
+U 5B95BAE6
+F0 "Conditional execution" 60
+F1 "condexec.sch" 60
+F2 "~op_ifeq" I R 9000 1050 60 
+F3 "~op_ifxxx" I R 9000 950 60 
+F4 "extop_s1" I L 7650 950 60 
+F5 "rbim_s1" I L 7650 1050 60 
+F6 "wrbk_en" O R 9000 1200 60 
+F7 "wrbk_rb0_en" O R 9000 1300 60 
+F8 "wrbk_rb1_en" O R 9000 1400 60 
+$EndSheet
 $EndSCHEMATC
