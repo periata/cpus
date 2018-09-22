@@ -174,4 +174,9 @@ module fifo_test_int_2st (clk, en, fail, done);
 	done=1'bz;
      end
 
+   initial
+     begin
+	//$monitor ("fifo::int_2st::state - %x/%b(e%bf%b) -- [%x/%b] -- [%x/%b] -- %x/%b", d_in, d_in_strobe, empty, full, sut.stage[0].element.store, sut.stage[0].element.used, sut.stage[1].element.store, sut.stage[1].element.used, q, q_ready);
+     end
+   
 endmodule

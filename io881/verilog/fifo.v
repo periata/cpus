@@ -67,7 +67,7 @@ module fifo (clk, d_in, d_in_strobe, q, q_ready, q_out_strobe, full, empty);
 
    // connect element buses to outside world where appropriate
    assign e_qd[0] = d_in;
-   assign q = empty ? e_qd[DEPTH] : d_in;
+   assign q = e_used[DEPTH-1] ? e_qd[DEPTH] : d_in;
    assign e_in_strobe [0] = empty ? d_in_strobe && ~q_out_strobe : d_in_strobe;
    assign e_out_strobe [DEPTH] = q_out_strobe;
    assign empty = ~e_used[DEPTH-1];
@@ -82,7 +82,7 @@ module fifo (clk, d_in, d_in_strobe, q, q_ready, q_out_strobe, full, empty);
    genvar i;
    generate
       for (i = 0; i < DEPTH; i = i + 1)
-      begin
+      begin : stage
        	   fifo_element #(WIDTH) element (.clk(clk), 
 				       .d_in(e_qd[i]), 
 				       .d_in_strobe(e_in_strobe[i]), 
