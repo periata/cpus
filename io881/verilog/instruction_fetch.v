@@ -12,7 +12,7 @@ module instruction_fetch (
 			  // feedback from execution stage
 			  jump_enable, jump_target, suspend, jump_susp_skipped, 
 			  // connection to memory controller
-			  mem_addr, mem_rd_en, mem_d_in, mem_ack
+			  mem_addr, mem_rd_en, mem_d_in, mem_ack,
 			  // status information
 			  current_channel, current_thread, current_pc, current_task_operand
 			  );
@@ -29,8 +29,10 @@ module instruction_fetch (
    parameter SRAM_ADDR_SIZE=MEM_ADDR_SIZE+CHAN_SEL_SIZE;   
    parameter OPCODE_SIZE=8;
    parameter OPERAND_SIZE=8;
-   parameter DECODED_INSN_SIZE=8;
-   parameter INSN_BUF_WIDTH=DECODE_INSN_SIZE+OPERAND_SIZE;
+   parameter DECODED_INSN_SIZE=24;
+   parameter INSN_BUF_WIDTH=DECODED_INSN_SIZE;
+
+   parameter DI_REQUESTPC = 24'h178000;
 
    // clock input (all activity to take place on positive edge)
    input                         clk;
@@ -61,7 +63,7 @@ module instruction_fetch (
    input [DECODED_INSN_SIZE-1:0] decoded_insn;
    // high if decoded instruction requires an operand
    input 			 need_operand;
-   // high if decoded instruction is a noop 
+   // High if decoded instruction is a noop 
    // (noops are ignored if they occur as the second nibble of a packed instruction word)
    input 			 insn_noop;
    // high if the decoded instruction will cause the thread to be suspended
@@ -200,8 +202,9 @@ module instruction_fetch (
    // instruction fetch current state
    // ===============================
 
-   reg 				 active;
-   reg 				 task_loaded;
+   reg 				 active;       // true if we are currently in fetch mode
+   reg 				 task_loaded;  // true if the task information cache is correctly initialized
+   reg 				 fetching_pc;  // true if we're requesting a PC update in this cycle
    
    reg [CHAN_SEL_SIZE-1:0] 	 current_channel;
    reg [THREAD_SEL_SIZE-1:0] 	 current_thread;
@@ -214,12 +217,18 @@ module instruction_fetch (
 
    reg 				 fetching_insn, fetching_operand;
    
+   // registered outputs
+   reg 				 next_task_ack;
+   reg 				 ififo_shift;
 
+ 
+   
+   
    // combinatorial outputs
    // =====================
 
    assign opcode = fetching_insn ? mem_d_in : saved_opcode;
-   assign ififo_di = { decoded_insn, fetching_operand ? mem_d_in : 0 };
+   assign ififo_di = fetching_pc ? DI_REQUESTPC : decoded_insn;
    assign mem_addr = { current_channel, current_pc };
    assign mem_rd_en = fetching_insn | fetching_operand;
    
@@ -228,28 +237,56 @@ module instruction_fetch (
 
    always @(posedge clk)
      begin
+	// default values for control lines that are activated for single cycles
+	next_task_ack <= 0;
+	ififo_shift <= 0;
+	fetching_pc <= !reset && !active && !task_loaded && next_task_ready;
 
 	if (reset)
 	  begin
 	     // reset registers
+	     //$monitor ("active: %b, task_loaded: %b, fetching_pc: %b, ififo_di: %b, decoded_insn: %b", 
+	     //          active, task_loaded, fetching_pc, ififo_di, decoded_insn);
+	     
 	     active <= 0;
 	     task_loaded <= 0;
-	     saved_insn_valid <= 0;
+	     current_channel <= 0;
+	     current_thread <= 3;
+	     saved_opcode_valid <= 0;
 	     fetching_insn <= 0;
 	     fetching_operand <= 0;
-
-	     // default values for control lines that must be set in all circumstances
-	     next_task_ack = 0;
-	     ififo_shift = 0;
 	  end
 	else // not reset
 	  begin
-	     
+	     if (!active)
+	       begin
+		  if (!task_loaded && next_task_ready)
+		    begin
+		       current_channel <= next_task_channel;
+		       current_thread <= next_task_thread;
+		       current_task_operand <= next_task_operand;
+		       next_task_ack <= 1;
+		       ififo_shift <= 1;
+		    end
+		  else if (task_loaded && jump_enable)
+		    begin
+		       current_pc <= jump_target;
+		       active <= 1;
+		    end
+	       end // if (!active)
+	     else
+	       begin
+		  
+	       end 
 	     
 	  end
-	
-	
+     end // always @ (posedge clk)
+
+   always @(negedge clk)
+     begin
+	if (fetching_pc)
+	  task_loaded <= 1;
      end
    
 
-   
+endmodule   

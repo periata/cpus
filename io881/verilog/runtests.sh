@@ -1,4 +1,4 @@
-for module in regs fifo ram; do
+for module in fifo ram instruction_fetch; do
     echo -n $module ...
     rerun=false
     if [ ! -f ${module}_tests.vpi ]; then
