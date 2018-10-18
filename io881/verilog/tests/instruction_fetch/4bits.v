@@ -7,19 +7,19 @@ module ifetch_test_4bits (clk, en, fail, done);
    
    always @(posedge en)
      begin
-	@(posedge clk);
+	@(posedge clk) #1;
 	reset = 1;
-	@(posedge clk);
+	@(posedge clk) #1;
 	reset = 0;
-	@(posedge clk);
+	@(posedge clk) #1;
 	next_task_channel = 3;
 	next_task_thread = 0;
 	next_task_ready = 1;
-	@(posedge clk);
-	next_taks_ready = 0;
+	@(posedge clk) #1;
+	next_task_ready = 0;
 	jump_target = 12'h000;
 	jump_enable = 1;
-	@(posedge clk);
+	@(posedge clk) #1;
 	jump_enable = 0;
 
 	if (mem_addr !== 15'h3000)
@@ -36,7 +36,7 @@ module ifetch_test_4bits (clk, en, fail, done);
 	mem_d_in = 8'h5A;
 	mem_ack = 1;
 
-	@(posedge clk);
+	@(posedge clk) #1;
 
 	mem_ack = 0;
 
@@ -58,7 +58,7 @@ module ifetch_test_4bits (clk, en, fail, done);
 	insn_pull = 0;
 	insn_jump = 0;
 
-	@(posedge clk);
+	@(posedge clk) #1;
 	
 	
 	     

@@ -245,8 +245,10 @@ module instruction_fetch (
 	if (reset)
 	  begin
 	     // reset registers
-	     //$monitor ("active: %b, task_loaded: %b, fetching_pc: %b, ififo_di: %b, decoded_insn: %b", 
-	     //          active, task_loaded, fetching_pc, ififo_di, decoded_insn);
+	     $display ("reset");
+	     
+	     $monitor ("task_loaded: %b, fetching_pc: %b, jump_enable: %b, jump_target: %x", 
+	               task_loaded, fetching_pc, jump_enable, jump_target);
 	     
 	     active <= 0;
 	     task_loaded <= 0;
@@ -260,22 +262,52 @@ module instruction_fetch (
 	  begin
 	     if (!active)
 	       begin
+		  //
+		  // if active is low, we are not currently fetching instructions: either
+		  // we don't have a current task (task_loaded is low), or we are waiting
+		  // for a jump or suspend instruction to be executed/skipped.  Fetching
+		  // the initial program counter for a task is a special case of the
+		  // latter (and is handled exactly the same way).
+		  //
 		  if (!task_loaded && next_task_ready)
 		    begin
+		       $display ("starting thread %x:%x", next_task_channel, next_task_thread);
+		       
 		       current_channel <= next_task_channel;
 		       current_thread <= next_task_thread;
 		       current_task_operand <= next_task_operand;
 		       next_task_ack <= 1;
 		       ififo_shift <= 1;
+		       task_loaded <= 1;
+		       pull_decoded <= 0;
 		    end
 		  else if (task_loaded && jump_enable)
 		    begin
+		       $display ("jump detected (new target %x)", jump_target);
+		       
 		       current_pc <= jump_target;
 		       active <= 1;
+		       //
+		       // always begin fetching the next instruction after a jump
+		       // (the queue should always be empty in this situation)
+		       //
+		       fetching_insn <= 1;
+		       // FIXME: do we need to clear partial opcode loads/etc?
 		    end
 	       end // if (!active)
 	     else
 	       begin
+		  //
+		  // if active is high, we have a task and are fetching instructions.
+		  //
+
+		  if (fetching_insn && mem_ack)
+		    begin
+		       //
+		       // we've loaded a new instruction word, so begin decoding it
+		       //
+		       saved_opcode <= mem_d_in;
+		    end
 		  
 	       end 
 	     
