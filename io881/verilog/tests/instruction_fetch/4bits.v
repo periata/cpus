@@ -36,9 +36,8 @@ module ifetch_test_4bits (clk, en, fail, done);
 	mem_d_in = 8'h5A;
 	mem_ack = 1;
 
-	@(posedge clk) #1;
-
-	mem_ack = 0;
+	// opcode should feed out as soon as memory input is available:
+	#1;
 
 	if (opcode !== 8'h5A)
 	  begin
@@ -50,6 +49,8 @@ module ifetch_test_4bits (clk, en, fail, done);
 	     $display ("ifetch::4bits - pull decoded should be 0, but was %b", pull_decoded);
 	     fail = 1;
 	  end
+
+	// decode should be examined at next clock edge:
 	
 	decoded_insn = 24'hAAAAAA;
 	need_operand = 0;
@@ -57,7 +58,22 @@ module ifetch_test_4bits (clk, en, fail, done);
 	insn_suspend = 0;
 	insn_pull = 0;
 	insn_jump = 0;
+	
+	@(posedge clk) #1;
 
+	mem_ack = 0;
+
+	if (ififo_di !== 24'hAAAAAA)
+	  begin
+	     $display ("ifetch::4bits - ififo_di should be AAAAAA but is %x", ififo_di);
+	     fail = 1;
+	  end
+	if (ififo_shift !== 1)
+	  begin
+	     $display ("ifetch::4bits - ififo_shift should be asserted but is %b", ififo_shift);
+	     fail = 1;
+	  end
+	
 	@(posedge clk) #1;
 	
 	

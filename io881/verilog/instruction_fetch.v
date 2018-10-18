@@ -247,8 +247,8 @@ module instruction_fetch (
 	     // reset registers
 	     $display ("reset");
 	     
-	     $monitor ("task_loaded: %b, fetching_pc: %b, jump_enable: %b, jump_target: %x", 
-	               task_loaded, fetching_pc, jump_enable, jump_target);
+	     //$monitor ("task_loaded: %b, fetching_pc: %b, jump_enable: %b, jump_target: %x", 
+	     //          task_loaded, fetching_pc, jump_enable, jump_target);
 	     
 	     active <= 0;
 	     task_loaded <= 0;
@@ -278,7 +278,6 @@ module instruction_fetch (
 		       current_task_operand <= next_task_operand;
 		       next_task_ack <= 1;
 		       ififo_shift <= 1;
-		       task_loaded <= 1;
 		       pull_decoded <= 0;
 		    end
 		  else if (task_loaded && jump_enable)
@@ -304,9 +303,14 @@ module instruction_fetch (
 		  if (fetching_insn && mem_ack)
 		    begin
 		       //
-		       // we've loaded a new instruction word, so begin decoding it
+		       // we've loaded a new instruction word, and the first opcode should have been decoded
+		       // so shift it into the fifo
 		       //
 		       saved_opcode <= mem_d_in;
+		       ififo_shift <= 1;
+
+		       // FIXME: handle second opcode
+		       // FIXME: handle operand bytes
 		    end
 		  
 	       end 
