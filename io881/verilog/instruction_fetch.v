@@ -204,7 +204,6 @@ module instruction_fetch (
 
    reg 				 active;       // true if we are currently in fetch mode
    reg 				 task_loaded;  // true if the task information cache is correctly initialized
-   reg 				 fetching_pc;  // true if we're requesting a PC update in this cycle
    
    reg [CHAN_SEL_SIZE-1:0] 	 current_channel;
    reg [THREAD_SEL_SIZE-1:0] 	 current_thread;
@@ -220,6 +219,7 @@ module instruction_fetch (
    // registered outputs
    reg 				 next_task_ack;
    reg 				 ififo_shift;
+   reg [INSN_BUF_WIDTH-1:0] 	 ififo_di; 	 
 
  
    
@@ -227,8 +227,7 @@ module instruction_fetch (
    // combinatorial outputs
    // =====================
 
-   assign opcode = fetching_insn ? mem_d_in : saved_opcode;
-   assign ififo_di = fetching_pc ? DI_REQUESTPC : decoded_insn;
+   assign opcode = saved_opcode_valid ? saved_opcode : mem_d_in;
    assign mem_addr = { current_channel, current_pc };
    assign mem_rd_en = fetching_insn | fetching_operand;
    
@@ -240,8 +239,7 @@ module instruction_fetch (
 	// default values for control lines that are activated for single cycles
 	next_task_ack <= 0;
 	ififo_shift <= 0;
-	fetching_pc <= !reset && !active && !task_loaded && next_task_ready;
-
+	
 	if (reset)
 	  begin
 	     // reset registers
@@ -271,14 +269,21 @@ module instruction_fetch (
 		  //
 		  if (!task_loaded && next_task_ready)
 		    begin
-		       $display ("starting thread %x:%x", next_task_channel, next_task_thread);
-		       
+		       $display ("starting task %x:%x", next_task_channel, next_task_thread);
+
+		       // store task details
 		       current_channel <= next_task_channel;
 		       current_thread <= next_task_thread;
 		       current_task_operand <= next_task_operand;
+		       // remove task from queue
 		       next_task_ack <= 1;
+		       // request current PC (FIXME don't do this if we already have correct PC)
+		       ififo_di <= DI_REQUESTPC;
 		       ififo_shift <= 1;
+		       // we haven't decoded a PULL instruction yet
 		       pull_decoded <= 0;
+		       // the task is loaded
+		       task_loaded <= 1;
 		    end
 		  else if (task_loaded && jump_enable)
 		    begin
@@ -300,29 +305,54 @@ module instruction_fetch (
 		  // if active is high, we have a task and are fetching instructions.
 		  //
 
-		  if (fetching_insn && mem_ack)
+		  // if we've decoded an instruction, it may induce state changes:
+		  pull_decoded <= pull_decoded | insn_pull;
+		  
+		  if (saved_opcode_valid)
+		    begin
+		       // we have a partially processed instruction word; finish handling the rest
+		       ififo_shift <= 1;
+		       ififo_di <= decoded_insn;
+		       saved_opcode_valid <= 0;
+
+		       // FIXME: handle operand bytes
+		    end
+		  else if (fetching_insn && mem_ack)
 		    begin
 		       //
 		       // we've loaded a new instruction word, and the first opcode should have been decoded
 		       // so shift it into the fifo
 		       //
-		       saved_opcode <= mem_d_in;
+		       saved_opcode <= { mem_d_in[3:0], 4'b0000 };
+		       saved_opcode_valid <= 1;
 		       ififo_shift <= 1;
+		       ififo_di <= decoded_insn;
+		       fetching_insn <= 0;
+		       current_pc <= current_pc + 1;
 
-		       // FIXME: handle second opcode
+		       // FIXME: handle full-byte instructions
+		       
 		       // FIXME: handle operand bytes
+		    end // if (fetching_insn && mem_ack)
+
+		  if (saved_opcode_valid === 0)
+		    begin
+		       fetching_insn <= 1;
 		    end
 		  
 	       end 
 	     
 	  end
      end // always @ (posedge clk)
+   
 
    always @(negedge clk)
      begin
-	if (fetching_pc)
-	  task_loaded <= 1;
+	if (ififo_shift)
+	  begin
+	     // process state changes induced by the most recently decoded instruction
+	  end
      end
    
-
+	
 endmodule   
